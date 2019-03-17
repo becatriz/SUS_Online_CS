@@ -1,0 +1,62 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Home</title>
+
+
+<link rel="stylesheet" type="text/css" href="./resources/bootstrap/css/slider.css">
+<script type="text/javascript" src="./resources/bootstrap/js/slider.js"></script>
+
+
+
+</head>
+<body>
+
+	<!-- Aqui apenas as imagens/slides da parte superior -->
+	<figure>
+		<span class="trs next"></span>
+		<span class="trs prev"></span>
+
+		<div id="slider">
+			<a href="#" class="trs"><img
+				src="./resources/bootstrap/img/1.jpg" width=1200px height=450px
+				alt="Programa de assistencia a idosos chega na cidade de Campo Grande-MS" /></a>
+			<a href="#" class="trs"><img
+				src="./resources/bootstrap/img/2.jpg" width=1200 height=450px
+				alt="Alunos de escola pública são atendidos no interior de Mato Grosso do Sul" /></a>
+		</div>
+
+		<figcaption></figcaption>
+	</figure>
+
+	<h1>PORTAL SUS ONLINE</h1>
+
+	<!-- Aqui apenas o menu abaixo das imagens/slides -->
+	<div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+		<div class="container">
+			<div class="navbar-header"></div>
+
+			<div class="navbar">
+				<div class="row" >
+					<a class="navbar-brand"
+						href="InicialController?action=home_barra_superior">Home</a> <a
+						href="InicialController?action=iniciar_criar_conta"
+						style="margin-right: 5px;"
+						class="btn btn-sm btn-success active navbar-right offset"
+						role="button">Cadastre-se</a> <a
+						href="InicialController?action=iniciar_login_conta
+						"
+						style="margin-right: 5px;"
+						class="btn btn-sm btn-success active navbar-right offset"
+						role="button">Login</a>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+
+</body>
+</html>
