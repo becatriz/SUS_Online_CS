@@ -44,18 +44,23 @@
 					</div>
 
 					<!-- Login Form -->
-					<form>
+					<form action="" method="post">
 
-						<input type="text" id="login" class="fadeIn second" name="login"
-							placeholder="Usuário"> <input type="text" id="password"
-							class="fadeIn third" name="login" placeholder="Senha">
-	                    <!-- Div para o recaptcha -->
+						<input type="text" id="login" class="fadeIn second" name="nome"
+							placeholder="Usuário" required> <input type="text" id="password"
+							class="fadeIn third" name="login" placeholder="Senha" required>
+
+						<!-- Div para o recaptcha -->
 						<div class="g-recaptcha" style="margin-left: 75px;"
 							data-sitekey="6LffsZkUAAAAAK8jd-EMK9CG_99WOup2TX4GSgkk"></div>
 
 
 						<input type="submit" class="fadeIn fourth" value="Entrar">
 					</form>
+
+
+
+			
 
 					<!-- Remind Passowrd -->
 					<div id="formFooter">
