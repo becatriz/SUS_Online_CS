@@ -1,12 +1,13 @@
 /* BASIC */
 
 html {
-  background-color: white;
+  background-color: rgba(1, 144, 238, 0.76);
 }
 
 body {
   font-family: "Poppins", sans-serif;
   height: 100vh;
+  
 }
 
 a {
@@ -259,3 +260,5 @@ input[type=text]:placeholder {
 #icon {
   width:30%;
 }
+
+
