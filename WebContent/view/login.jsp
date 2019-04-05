@@ -6,7 +6,7 @@
 <title>Login</title>
 
 <link rel="stylesheet" type="text/css"
-	href="./resources/bootstrap/css/loginn.css">
+	href="./resources/bootstrap/css/login.css">
 
 
 <script
@@ -47,7 +47,7 @@
 					<form action="" method="post">
 
 						<input type="text" id="login" class="fadeIn second" name="nome"
-							placeholder="Usuário" required> <input type="text" id="password"
+							placeholder="Usuário" required> <input type="password" id="password"
 							class="fadeIn third" name="login" placeholder="Senha" required>
 
 						<!-- Div para o recaptcha -->
