@@ -95,6 +95,7 @@ public class InicialController extends HttpServlet {
 			// se o dao retornar um usuario , coloca o mesmo na sessao
 			session.setAttribute("user", user);
 			request.getRequestDispatcher("view/logado.jsp").forward(request, response);
+			
 		}
 
 	}

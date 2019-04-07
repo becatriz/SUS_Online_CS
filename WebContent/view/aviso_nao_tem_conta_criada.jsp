@@ -5,11 +5,28 @@
 <meta charset="ISO-8859-1">
 <title>Cadastro</title>
 
-<link rel="stylesheet" type="text/css" href="./resources/bootstrap/css/login.css">
+<link rel="stylesheet" type="text/css"
+	href="./resources/bootstrap/css/login_nao_existe.css">
 
 </head>
 <body>
-	<h1>Você não possui cadastro. Dirija-se a unidade basica de saude mais proxima!</h1>
+
+	<img src="./resources/bootstrap/img/portal_sus_online.png" width=107%
+		height=280px alt="" />
+
+	<h1>
+		Você não possui cadastro.<br /> Dirija-se a unidade basica de saude
+		mais proxima!
+	</h1>
+
 	
+	<p>
+		<button class="btn btn-info"><a href="InicialController?action=home_barra_superior">Voltar</a></button>
+	</p>
+
+	
+
+
+
 </body>
 </html>

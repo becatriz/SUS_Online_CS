@@ -11,7 +11,7 @@
 <script src="./resources/bootstrap/js/bootstrap.min.js"></script>
 </head>
 <body>
-	<jsp:include page="barra_superior.jspf" />
+	<jsp:include page="home.jspf" />
 
 	<jsp:include page="barra_busca.jspf" />
 

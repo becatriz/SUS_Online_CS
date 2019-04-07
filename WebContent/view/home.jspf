@@ -6,7 +6,7 @@
 
 
 <link rel="stylesheet" type="text/css"
-	href="./resources/bootstrap/css/slider.css">
+	href="./resources/bootstrap/css/slideer.css">
 <script type="text/javascript" src="./resources/bootstrap/js/slider.js"></script>
 
 
@@ -21,11 +21,14 @@
 
 		<div id="slider">
 			<a href="#" class="trs"><img
-				src="./resources/bootstrap/img/1.jpg" width=1200px height=450px
+				src="./resources/bootstrap/img/01.jpg" width=1500px height=450px
 				alt="Programa de assistencia a idosos chega na cidade de Campo Grande-MS" /></a>
 			<a href="#" class="trs"><img
-				src="./resources/bootstrap/img/2.jpg" width=1200 height=450px
+				src="./resources/bootstrap/img/2.jpg" width= 1500px height=450px
 				alt="Alunos de escola pública são atendidos no interior de Mato Grosso do Sul" /></a>
+			<a href="#" class="trs"><img
+				src="./resources/bootstrap/img/portal_sus_online.png" width= 1500px height=450px
+				alt="Saiba mais sobre o Portal Sus Online" /></a>
 		</div>
 
 		<figcaption></figcaption>
@@ -40,13 +43,14 @@
 
 			<div class="navbar">
 				<div class="row">
-					<a class="navbar-brand"
-						href="InicialController?action=home_barra_superior">Home</a> <a
+					<a style="margin-right: 5px;" 
+					
+						href="InicialController?action=home_barra_superior" role="button">Home</a> <a
 						
 						style="margin-right: 5px;"
-						class="btn btn-sm btn-success active navbar-right offset"
+						
 						href="InicialController?action=iniciar_login_conta"
-						role="button">Login</a>
+						role="button" >Login</a>
 				</div>
 			</div>
 		</div>

@@ -23,7 +23,7 @@
     recaptcha.required = true;
     recaptcha.oninvalid = function(e) {
     // fazer algo, no caso to dando um alert
-    alert("Por favor complete o captchaba");
+    alert("Por favor complete o Captcha");
       }
    }
    </script>
