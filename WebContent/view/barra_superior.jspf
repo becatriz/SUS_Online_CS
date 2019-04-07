@@ -42,10 +42,10 @@
 				<div class="row">
 					<a class="navbar-brand"
 						href="InicialController?action=home_barra_superior">Home</a> <a
-						href="InicialController?action=iniciar_login_conta
-						"
+						
 						style="margin-right: 5px;"
 						class="btn btn-sm btn-success active navbar-right offset"
+						href="InicialController?action=iniciar_login_conta"
 						role="button">Login</a>
 				</div>
 			</div>

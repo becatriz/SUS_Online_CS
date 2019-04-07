@@ -16,7 +16,17 @@
 
 <!-- JavaScript Para o recaptcha -->
 <script src="https://www.google.com/recaptcha/api.js" async defer></script>
-
+<!-- Se nao preenche o Captcha exibe alerta para preencher -->
+ <script>
+    window.onload = function() {
+    var recaptcha = document.forms["Meu_form"]["g-recaptcha-response"];
+    recaptcha.required = true;
+    recaptcha.oninvalid = function(e) {
+    // fazer algo, no caso to dando um alert
+    alert("Por favor complete o captchaba");
+      }
+   }
+   </script>
 
 
 </head>
@@ -44,23 +54,25 @@
 					</div>
 
 					<!-- Login Form -->
-					<form action="" method="post">
+					<form id="Meu_form" action="Login.do" method="post">
 
-						<input type="text" id="login" class="fadeIn second" name="nome"
-							placeholder="Usuário" required> <input type="password" id="password"
-							class="fadeIn third" name="login" placeholder="Senha" required>
+						<input type="text" id="password" class="fadeIn second"
+							name="username" placeholder="Usuário" required> <input
+							type="password" id="password" class="fadeIn third"
+							name="password" placeholder="Senha" required>
 
 						<!-- Div para o recaptcha -->
 						<div class="g-recaptcha" style="margin-left: 75px;"
 							data-sitekey="6LffsZkUAAAAAK8jd-EMK9CG_99WOup2TX4GSgkk"></div>
 
 
-						<input type="submit" class="fadeIn fourth" value="Entrar">
+						<input type="submit" class="fadeIn fourth" value="Entrar"
+>
 					</form>
 
 
 
-			
+
 
 					<!-- Remind Passowrd -->
 					<div id="formFooter">
