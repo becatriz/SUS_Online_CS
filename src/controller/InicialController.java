@@ -132,7 +132,7 @@ private void ValidarUsuarioSenha(HttpServletRequest request, HttpServletResponse
 		for(int i = 0; i < senha_form.length(); i++ ){
 			char caracter = senha_form.charAt(i);
 			
-			if (!(Character.isLetter(caracter) || Character.isDigit(caracter))){
+			if (!(Character.isLetter(caracter) || Character.isDigit(caracter) || caracter == '_' || caracter == '.')){
 				session.invalidate();
 				request.setAttribute("mensagem", "Senha inválida; senha deve conter apenas letras e números.");
 				request.getRequestDispatcher("view/mensagem.jsp").forward(request, response);
