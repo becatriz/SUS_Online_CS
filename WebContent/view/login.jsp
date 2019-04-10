@@ -17,16 +17,19 @@
 <!-- JavaScript Para o recaptcha -->
 <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 <!-- Se nao preenche o Captcha exibe alerta para preencher -->
- <script>
-    window.onload = function() {
-    var recaptcha = document.forms["Meu_form"]["g-recaptcha-response"];
-    recaptcha.required = true;
-    recaptcha.oninvalid = function(e) {
-    // fazer algo, no caso to dando um alert
-    alert("Por favor complete o Captcha");
-      }
-   }
-   </script>
+<script>
+	window.onload = function() {
+		var recaptcha = document.forms["Meu_form"]["g-recaptcha-response"];
+		recaptcha.required = true;
+		recaptcha.oninvalid = function(e) {
+			// fazer algo, no caso to dando um alert
+			alert("Por favor complete o Captcha");
+		}
+	}
+</script>
+
+
+
 
 
 </head>
@@ -57,9 +60,11 @@
 					<form id="Meu_form" action="Login.do" method="post">
 
 						<input type="text" id="password" class="fadeIn second"
-							name="username" placeholder="Usuário" required> <input
-							type="password" id="password" class="fadeIn third"
-							name="password" placeholder="Senha" required>
+							name="username" pattern="[A-Za-z0-9]{6,15}" placeholder="Usuário"
+							required>
+						<input type="password" id="password"
+							class="fadeIn third" name="password" pattern="[A-Za-z0-9]{6,10}"
+							placeholder="Senha" required>
 
 						<!-- Div para o recaptcha -->
 						<div class="g-recaptcha" style="margin-left: 75px;"
@@ -67,7 +72,7 @@
 
 
 						<input type="submit" class="fadeIn fourth" value="Entrar"
->
+							onclick="return validar()">
 					</form>
 
 
