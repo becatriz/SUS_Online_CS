@@ -103,7 +103,7 @@ public class InicialController extends HttpServlet {
 
 
 
-
+//Metodo de validação de senha e usuario caso fuja da regra 
 private void ValidarUsuarioSenha(HttpServletRequest request, HttpServletResponse response, HttpSession session,
 		String login_form, String senha_form) throws ServletException, IOException
 	{
@@ -117,14 +117,14 @@ private void ValidarUsuarioSenha(HttpServletRequest request, HttpServletResponse
 			
 			if (!(Character.isLetter(caracter) || Character.isDigit(caracter))){
 				session.invalidate();
-				request.setAttribute("mensagem", "Usuário inválido; usuário deve conter apenas letras, números ou caracteres '.' e '_'.");
+				request.setAttribute("mensagem", "Usuário inválido: usuário deve conter apenas letras, números ou caracteres '.' e '_'.");
 				request.getRequestDispatcher("view/mensagem.jsp").forward(request, response);
 			}
 		}
 		
 		if (senha_form == null || senha_form.isEmpty() ||  senha_form.length() > 10 || senha_form.length() < 6){
 			session.invalidate();
-			request.setAttribute("mensagem", "Senha inválida; senha deve ter entre 6 e 15 caracteres.");
+			request.setAttribute("mensagem", "Senha inválida: senha deve ter entre 6 e 15 caracteres.");
 			request.getRequestDispatcher("view/mensagem.jsp").forward(request, response);
 		}
 		int contLetra = 0;

@@ -15,8 +15,8 @@
 		height=280px alt="" />
 
 	<h1>
-		Você não possui cadastro.<br /> Dirija-se a unidade basica de saude
-		mais proxima!
+		Você não possui cadastro.<br /> Procure a unidade de saude
+		mais proxima.
 	</h1>
 
 	

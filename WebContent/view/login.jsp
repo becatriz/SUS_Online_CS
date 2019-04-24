@@ -17,6 +17,8 @@
 <!-- JavaScript Para o recaptcha -->
 <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 <!-- Se nao preenche o Captcha exibe alerta para preencher -->
+
+
 <script>
 	window.onload = function() {
 		var recaptcha = document.forms["Meu_form"]["g-recaptcha-response"];
@@ -27,9 +29,6 @@
 		}
 	}
 </script>
-
-
-
 
 
 </head>
@@ -60,10 +59,10 @@
 					<form id="Meu_form" action="Login.do" method="post">
 
 						<input type="text" id="password" class="fadeIn second"
-							name="username" pattern="[A-Za-z0-9]{6,15}" placeholder="Usuário"
+							name="username" pattern="{6,15}" placeholder="Usuário" maxlength="15"
 							required>
 						<input type="password" id="password"
-							class="fadeIn third" name="password" pattern="[A-Za-z0-9]{6,10}"
+							class="fadeIn third" name="password" pattern="[a-zA-Z0-9]+{6,10}" maxlength="10"
 							placeholder="Senha" required>
 
 						<!-- Div para o recaptcha -->

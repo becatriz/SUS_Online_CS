@@ -35,6 +35,12 @@
 				style="margin-right: 5px;"
 				class="btn btn-sm btn-success active navbar-right offset"
 				href="InicialController?action=iniciar_login_conta" role="button">Sair</a>
+			<a style="margin-right: 5px;"
+				class="btn btn-sm btn-success active navbar-right offset"
+				href="AgendaController?action=consulta_agenda" role="button">Agenda</a>
+			<a style="margin-right: 5px;"
+				class="btn btn-sm btn-success active navbar-right offset"
+				href="AgendaController?action=agendar_consulta" role="button">Agendamento</a>
 		</div>
 	</div>
 
