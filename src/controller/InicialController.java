@@ -35,7 +35,22 @@ public class InicialController extends HttpServlet {
 			irParaHome(request, response);
 		} else if (action.equals("iniciar_login_conta")) {
 			irParaLogin(request, response);
+		}else if (action.equals("Login.do")) {
+			voltarPaginaLogado(request, response);
 		}
+	}
+
+	private void voltarPaginaLogado(HttpServletRequest request, HttpServletResponse response) {
+		
+		RequestDispatcher rd = null;
+		rd = request.getRequestDispatcher("view/logado.jsp");
+
+		try {
+			rd.forward(request, response);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
 	}
 
 	// Metodo que volta a pagina Home

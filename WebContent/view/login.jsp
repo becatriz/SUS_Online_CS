@@ -78,10 +78,7 @@
 
 
 
-					<!-- Remind Passowrd -->
-					<div id="formFooter">
-						<a class="underlineHover" href="#">Esqueci minha senha</a>
-					</div>
+					
 				</div>
 			</div>
 		</div>

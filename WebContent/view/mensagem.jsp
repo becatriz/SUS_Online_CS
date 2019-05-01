@@ -20,11 +20,7 @@
 
 	</section>
 
-	<p>
-		<button class="btn btn-info">
-			<a href="InicialController?action=home_barra_superior">Voltar</a>
-		</button>
-	</p>
+
 
 
 </body>

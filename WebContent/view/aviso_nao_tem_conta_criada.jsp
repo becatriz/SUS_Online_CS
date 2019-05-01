@@ -21,7 +21,7 @@
 
 	
 	<p>
-		<button class="btn btn-info"><a href="InicialController?action=home_barra_superior">Voltar</a></button>
+		<button class="btn btn-info"><a href="InicialController?action=iniciar_login_conta">Voltar</a></button>
 	</p>
 
 	
