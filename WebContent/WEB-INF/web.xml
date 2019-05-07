@@ -12,4 +12,12 @@
     <servlet-name>mapServelet</servlet-name>
     <url-pattern>/Login.do</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <servlet-name>mapServelet2</servlet-name>
+    <servlet-class>controller.AgendaController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>mapServelet2</servlet-name>
+    <url-pattern>/agendarConsulta</url-pattern>
+  </servlet-mapping>
 </web-app>

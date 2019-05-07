@@ -8,7 +8,11 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
+import model.AgendaConsulta;
+import model.DaoUsuario;
+import model.Autentica_Usuario;
 
 /**
  * Servlet implementation class AgendaController
@@ -16,6 +20,9 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet("/AgendaController")
 public class AgendaController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+
+	private DaoUsuario daoUsuario = new DaoUsuario();
+	DaoUsuario dao = new DaoUsuario();
 
 	/**
 	 * @see HttpServlet#HttpServlet()
@@ -39,34 +46,42 @@ public class AgendaController extends HttpServlet {
 		}
 	}
 
-	//Metodo para agendar Consulta
+	
+
+	// Metodo para agendar Consulta
 	private void irAgendarConsulta(HttpServletRequest request, HttpServletResponse response) {
-		
+
 		RequestDispatcher rd = null;
 		rd = request.getRequestDispatcher("view/agendarConsulta.jsp");
-		
-		
+
 		try {
 			rd.forward(request, response);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+	}
+
+	// Metodo para exibir a agenda do paciente
+	private void irParaAgenda(HttpServletRequest request, HttpServletResponse response) {
+		
+		
+		
+		
+
+		try {
+			
+			daoUsuario.getLista();
+			request.setAttribute("mensagem", "Agenda");
+			request.getRequestDispatcher("view/exibeAgenda.jsp").forward(request, response);
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 
 	}
 	
-	//Metodo para exibir a agenda do paciente
-	private void irParaAgenda(HttpServletRequest request, HttpServletResponse response) {
 
-		RequestDispatcher rd = null;
-		rd = request.getRequestDispatcher("view/exibeAgenda.jsp");
-
-		try {
-			rd.forward(request, response);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-
-	}
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
@@ -84,8 +99,45 @@ public class AgendaController extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
+
+		HttpSession sessao = request.getSession();
+		Autentica_Usuario usu = (Autentica_Usuario) sessao.getAttribute("user");
+		/*
+		 * Autentica_Usuario user = null; try { DaoUsuario dao = new DaoUsuario();//
+		 * Cria uma instancia do DAO usuario user = dao.findByUser(usu.getUsuario()); }
+		 * catch (Exception e) {
+		 * 
+		 * }
+		 */
+
+		String data = request.getParameter("data");
+		String hora = request.getParameter("hora");
+		String cidade = request.getParameter("cidade");
+		String estado = request.getParameter("estado");
+		String ubs = request.getParameter("ubs");
+		String medico = request.getParameter("medico");
+		String especialidade = request.getParameter("especialidade");
+
+		AgendaConsulta agenda = new AgendaConsulta();
+
+		agenda.setData(data);
+		agenda.setHora(hora);
+		agenda.setCidade(cidade);
+		agenda.setEstado(estado);
+		agenda.setUbs(ubs);
+		agenda.setMedico(medico);
+		agenda.setEspecialidade(especialidade);
+		agenda.setIdUsuario(usu.getId());
+		try {
+
+			daoUsuario.salvar(agenda);
+			request.setAttribute("mensagem", "Salvo");
+			request.getRequestDispatcher("view/sucessoAgendamento.jsp").forward(request, response);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
 	}
 
 }

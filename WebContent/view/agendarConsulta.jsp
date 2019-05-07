@@ -68,18 +68,70 @@ p>input {
 	});
 </script>
 
+<!-- Script para os options a cada seleção selecionar diferente -->
+<script>
+	function teste() {
+		valorSelecionado = $('#ubs').val();
+
+		//quando tiver visualizando o formulário o valor fica no campo text;
+		if (!valorSelecionado) {
+			valorSelecionado = $('#ubs').text();
+		}
+		switch (valorSelecionado) {
+		case "Posto Nova Bahia":
+			$('#Sandra').show();
+			$('#Rebeca').hide();
+			$('#Paulo').hide();
+			$('#Marcelo').show();
+			$('#Clinico Geral').show();
+			$('#Oftalmologista').hide();
+			$('#Cardiologista').hide();
+		
+
+			break;
+
+		case "Posto Coronel Antonino":
+			$('#Sandra').hide();
+			$('#Rebeca').show();
+			$('#Paulo').show();
+			$('#Clinico Geral').hide();
+			$('#Oftalmologista').hide();
+			$('#Cardiologista').show();
+		
+		
+
+			break;
+
+		case "Posto Tiradentes":
+			$('#Sandra').hide();
+			$('#Rebeca').show();
+			$('#Paulo').hide();
+			$('#Marcelo').show();
+			$('#Clinico Geral').hide();
+			$('#Oftalmologista').hide();
+			$('#resultado7').show();
+			$('#Cardiologista').show();
+
+			break;
+		default:
+
+		}
+	}
+</script>
 
 
 </head>
 <body>
 	<img src="./resources/bootstrap/img/portal_sus_online.png" width=100%
 		height=280px alt="" />
-<a class="navbar-brand" href="InicialController?action=Login.do">Voltar</a>
+	<a class="navbar-brand" href="InicialController?action=Login.do">Voltar</a>
 
 	<div class="container">
-		<h2>Agendar Consultas</h2><hr><hr>
-		
-		<form class="form-horizontal" action="agendarConsulta">
+		<h2>Agendar Consultas</h2>
+		<hr>
+		<hr>
+
+		<form class="form-horizontal" action="agendarConsulta"  method="post">
 			<div class="form-group">
 				<label class="control-label col-sm-2" for="data">Data:</label>
 
@@ -89,16 +141,23 @@ p>input {
 				</div>
 
 				<label class="control-label col-sm-1" for="data">Hora:</label>
-
 				<div class="col-sm-3">
-					<input type="text" class="form-control" id="hora"
-						placeholder="Horario" name="hora">
+					<select name="hora" id="inputCidade" class="form-control" >
+						<option selected>Hora</option>
+						<option>13:00</option>
+						<option>14:00</option>
+						<option>15:00</option>
+						<option>16:00</option>
+						<option>17:00</option>
+
+					</select>
 				</div>
+
 			</div>
 			<div class="form-group">
 				<label class="control-label col-sm-2">Cidade</label>
 				<div class="col-sm-3">
-					<select id="inputCidade" class="form-control">
+					<select name="cidade" id="inputCidade" class="form-control">
 						<option selected>Selecionar</option>
 						<option>Campo Grande</option>
 
@@ -109,66 +168,68 @@ p>input {
 			<div class="form-group">
 				<label class="control-label col-sm-2">Estado</label>
 				<div class="col-sm-3">
-					<select id="inputEstado" class="form-control">
-						<option selected>Selecionar</option>
+					<select name="estado" id="inputEstado" class="form-control">
+						<option selected >Selecionar</option>
 						<option>Mato Grosso do Sul</option>
 					</select>
 				</div>
 			</div>
 
+
 			<div class="form-group">
 				<label class="control-label col-sm-2">UBS - Unidade Básica
 					de Saúde</label>
 				<div class="col-sm-3">
-					<select id="inputEstado" class="form-control">
+					<select name="ubs" class="form-control" id="ubs"
+						onchange="teste();">
 						<option selected>Selecionar</option>
-						<option>Posto Coronel Antonino</option>
-						<option>Posto Nova Bahia</option>
-						<option>Posto Tiradentes</option>
-					</select>
-				</div>
-			</div>
+						<option value="Posto Nova Bahia ">Posto Nova Bahia</option>
+						<option value="Posto Coronel Antonino">Posto Coronel Antonino</option>
+						<option value="Posto Tiradentes">Posto Tiradentes</option>
+					</select> <br> <label class="">Médico(a)</label> 
+					
+					<select
+						name="medico" id="medico" class="form-control">
 
-			<div class="form-group">
-				<label class="control-label col-sm-2">Especialidade</label>
-				<div class="col-sm-3">
-					<select id="inputEstado" class="form-control">
 						<option selected>Selecionar</option>
-						<option>Clinico Geral</option>
-						<option>Oftalmologista</option>
-						<option>Endocrino</option>
-						<option>Ginecologista</option>
-						<option>Otorrinolaringologista</option>
-					</select>
-				</div>
-			</div>
+						<option value="Sandra" id="resultado1">Drª Sandra
+							Mesquita</option>
+						<option value="Rebeca" id="resultado2">Drª Rebeca
+							Lopes</option>
+						<option value="Paulo" id="resultado3">Dr Paulo Oka</option>
+						<option value="Marcelo" id="resultado4">Dr Marcelo
+							Pereira</option>
+					</select> <label class="">Especialidade</label> <select name="especialidade"
+						id="especialidade" class="form-control">
 
-	
-			<div class="form-group">
-				<label class="control-label col-sm-2">Médicos</label>
-				<div class="col-sm-3">
-					<select id="inputEstado" class="form-control">
 						<option selected>Selecionar</option>
-						<option>Dr. Paulo Oka</option>
-						<option>Dr. Marcelo Pereira</option>
-						<option>Dra. Sandra Mesquita</option>
-						<option>Dra. Rebeca Lopes</option>
-						
+						<option value="Clinico Geral" id="resultado5">Clinico Geral</option>
+						<option value="Oftalmologista" id="resultado6">Oftalmologista</option>
+						<option value="Cardiologista" id="resultado8">Cardiologista</option>
 					</select>
+
 				</div>
 			</div>
 
 
-			<div class="form-group">
-				<div class="col-sm-offset-2 col-sm-10"></div>
-			</div>
+
+
 			<div class="form-group">
 				<div class="col-sm-offset-2 col-sm-10">
-					<button type="submit" class="btn btn-default">Agendar</button>
+					<button type="submit" value="salvar" class="btn btn-default">Agendar</button>
 				</div>
 			</div>
 		</form>
 	</div>
+
+
+
+
+
+
+
+
+
 
 </body>
 </html>

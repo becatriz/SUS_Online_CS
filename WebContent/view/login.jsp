@@ -14,21 +14,8 @@
 <script
 	src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
-<!-- JavaScript Para o recaptcha -->
-<script src="https://www.google.com/recaptcha/api.js" async defer></script>
-<!-- Se nao preenche o Captcha exibe alerta para preencher -->
 
 
-<script>
-	window.onload = function() {
-		var recaptcha = document.forms["Meu_form"]["g-recaptcha-response"];
-		recaptcha.required = true;
-		recaptcha.oninvalid = function(e) {
-			// fazer algo, no caso to dando um alert
-			alert("Por favor complete o Captcha");
-		}
-	}
-</script>
 
 
 </head>
@@ -58,7 +45,7 @@
 					<!-- Login Form -->
 					<form id="Meu_form" action="Login.do" method="post">
 
-						<input type="text" id="password" class="fadeIn second"
+						<input type="text" id="username" class="fadeIn second"
 							name="username" pattern="{6,15}" placeholder="Usuário" maxlength="15"
 							required>
 						<input type="password" id="password"

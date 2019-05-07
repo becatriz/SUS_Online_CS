@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -41,14 +42,13 @@
 </head>
 <body>
 	<img src="./resources/bootstrap/img/portal_sus_online.png" width=100%
-		height=280px alt=""  />
+		height=280px alt="" />
 	<a class="navbar-brand" href="InicialController?action=Login.do">Voltar</a>
 	<!-- container -->
 	<div class="container example">
 
 		<h1>
 			<span>Suas Consultas</span>
-
 		</h1>
 
 		<hr>
@@ -62,11 +62,14 @@
 					
 					
 					
+					
+					
+					
                 $(document).ready(function () {
                     $("#my-calendar").zabuto_calendar({
                     	language: "pt",
                         cell_border: true,
-                        today: false,
+                        today: true,
                         show_days: true,
                         weekstartson: 0,
                         nav_icon: {
@@ -75,17 +78,48 @@
                         }
                     });
                 });
-            
+            	
+				
+				
+				
 				
 				
 				</script>
 
 			</div>
-
 		</div>
 
-	</div>
-	<!-- /container -->
 
+
+
+
+		<form id="vt" action="AgendaController?action=irParaAgenda" method="get">
+			<table border=1>
+				<tr>
+					<th>Data</th>
+					<th>Hora</th>
+					<th>Posto</th>
+					<th>Medico</th>
+				
+				</tr>
+				<c:forEach var="linha" items="${agenda}">
+					<tr>
+						<td>${linha.data}</td>
+						<td>${linha.hora}</td>
+						<td>${linha.ubs}</td>
+						<td>${linha.medico}</td>
+						
+						
+						
+					</tr>
+				</c:forEach>
+			</table>
+		</form>
+		<div class="form-group">
+			<div class="col-sm-offset-2 col-sm-10">
+				<button type="submit" value="reagendar" class="btn btn-default">Reagendar</button>
+			</div>
+		</div>
+		<!-- /container -->
 </body>
 </html>
