@@ -65,6 +65,8 @@
 					
 					
 					
+					
+					
                 $(document).ready(function () {
                     $("#my-calendar").zabuto_calendar({
                     	language: "pt",
@@ -84,42 +86,52 @@
 				
 				
 				
+				
+				
 				</script>
 
 			</div>
 		</div>
+	</div>
 
 
 
+	<div class="container_dados">
 
+	<form id="vt" action="AgendaController?action=irParaAgenda"
+		method="get">
 
-		<form id="vt" action="AgendaController?action=irParaAgenda" method="get">
-			<table border=1>
+		<table border=1 >
+			<tr>
+				<th>Data</th>
+				<th>Hora</th>
+				<th>Posto</th>
+				<th>Medico</th>
+				<th>Especialidade</th>
+
+			</tr>
+			<c:forEach var="linha" items="${listaAgenda}">
 				<tr>
-					<th>Data</th>
-					<th>Hora</th>
-					<th>Posto</th>
-					<th>Medico</th>
-				
+					<td>${linha.data}</td>
+					<td>${linha.hora}</td>
+					<td>${linha.ubs}</td>
+					<td>${linha.medico}</td>
+					<td>${linha.especialidade}</td>
+
+
+
 				</tr>
-				<c:forEach var="linha" items="${agenda}">
-					<tr>
-						<td>${linha.data}</td>
-						<td>${linha.hora}</td>
-						<td>${linha.ubs}</td>
-						<td>${linha.medico}</td>
-						
-						
-						
-					</tr>
-				</c:forEach>
-			</table>
-		</form>
-		<div class="form-group">
-			<div class="col-sm-offset-2 col-sm-10">
-				<button type="submit" value="reagendar" class="btn btn-default">Reagendar</button>
-			</div>
+			</c:forEach>
+		</table>
+		<br />
+	</form>
+
+	</div>
+	<div class="form-group">
+		<div class="col-sm-offset-2 col-sm-10">
+			<button type="submit" value="reagendar" class="btn btn-default">Reagendar</button>
 		</div>
-		<!-- /container -->
+	</div>
+	<!-- /container -->
 </body>
 </html>

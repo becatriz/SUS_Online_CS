@@ -1,5 +1,4 @@
-package model;
-
+package br.com.sus_online.model;
 
 ;
 

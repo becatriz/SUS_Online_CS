@@ -1,4 +1,4 @@
-package controller;
+package br.com.sus_online.controller;
 
 import java.io.IOException;
 
@@ -10,8 +10,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import model.Autentica_Usuario;
-import model.DaoUsuario;
+import br.com.sus_online.model.Autentica_Usuario;
+import br.com.sus_onlineDao.model.DaoUsuario;
 
 /**
  * Servlet implementation class InicialController

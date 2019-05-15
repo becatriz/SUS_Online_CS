@@ -22,7 +22,7 @@
 			<jsp:forward page="aviso_nao_tem_conta_criada.jsp" />
 		</c:when>
 		<c:otherwise>
-			<p>Não Foi possivel agendar ${ user.nome }</p>
+			<h1> ${ mensagem }</h1>
 		</c:otherwise>
 
 	</c:choose>

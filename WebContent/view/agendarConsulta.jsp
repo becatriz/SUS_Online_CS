@@ -168,7 +168,7 @@ p>input {
 			<div class="form-group">
 				<label class="control-label col-sm-2">Estado</label>
 				<div class="col-sm-3">
-					<select name="estado" id="inputEstado" class="form-control">
+					<select required name="estado" id="inputEstado" class="form-control">
 						<option selected >Selecionar</option>
 						<option>Mato Grosso do Sul</option>
 					</select>

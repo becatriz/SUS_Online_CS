@@ -1,6 +1,7 @@
-package controller;
+package br.com.sus_online.controller;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -10,9 +11,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import model.AgendaConsulta;
-import model.DaoUsuario;
-import model.Autentica_Usuario;
+import br.com.sus_online.model.AgendaConsulta;
+import br.com.sus_online.model.Autentica_Usuario;
+import br.com.sus_onlineDao.model.DaoConsultasExames;
 
 /**
  * Servlet implementation class AgendaController
@@ -21,8 +22,8 @@ import model.Autentica_Usuario;
 public class AgendaController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	private DaoUsuario daoUsuario = new DaoUsuario();
-	DaoUsuario dao = new DaoUsuario();
+	private DaoConsultasExames daoConsultaExame = new DaoConsultasExames();
+	DaoConsultasExames dao = new DaoConsultasExames();
 
 	/**
 	 * @see HttpServlet#HttpServlet()
@@ -46,8 +47,6 @@ public class AgendaController extends HttpServlet {
 		}
 	}
 
-	
-
 	// Metodo para agendar Consulta
 	private void irAgendarConsulta(HttpServletRequest request, HttpServletResponse response) {
 
@@ -64,24 +63,28 @@ public class AgendaController extends HttpServlet {
 
 	// Metodo para exibir a agenda do paciente
 	private void irParaAgenda(HttpServletRequest request, HttpServletResponse response) {
-		
-		
-		
-		
 
 		try {
+			HttpSession sessao = request.getSession();
+			Autentica_Usuario usu = (Autentica_Usuario) sessao.getAttribute("user");
+
+			List<AgendaConsulta> agenda = daoConsultaExame.getLista(usu.getId());
 			
-			daoUsuario.getLista();
-			request.setAttribute("mensagem", "Agenda");
+			if (agenda.size() > 0) {
+				request.setAttribute("listaAgenda", agenda);
+				request.setAttribute("temAgenda", true);
+			}
+			else {
+				request.setAttribute("temAgenda", false);
+			}
+			
 			request.getRequestDispatcher("view/exibeAgenda.jsp").forward(request, response);
-			
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 
 	}
-	
-
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
@@ -130,9 +133,32 @@ public class AgendaController extends HttpServlet {
 		agenda.setIdUsuario(usu.getId());
 		try {
 
-			daoUsuario.salvar(agenda);
-			request.setAttribute("mensagem", "Salvo");
-			request.getRequestDispatcher("view/sucessoAgendamento.jsp").forward(request, response);
+			
+			List<AgendaConsulta> agendaMarcada = daoConsultaExame.getLista(usu.getId());
+			
+			
+			boolean agendar = true;
+			for (AgendaConsulta ag : agendaMarcada) {
+				String d1 = agenda.getData();
+				String d2 = ag.getData();
+				String h1 = agenda.getHora();
+				String h2 = ag.getHora();
+				if (d1.equals(d2) && h1.equals(h2)) {
+					agendar = false;
+					break;
+				}
+			}
+			if (agendar) {
+
+				daoConsultaExame.salvar(agenda);
+				request.setAttribute("mensagem", "Salvo");
+				request.getRequestDispatcher("view/sucessoAgendamento.jsp").forward(request, response);
+			}
+			else {
+				String msg = "Já existe uma consulta no mesmo dia e horário.";
+				request.setAttribute("mensagem", msg);
+				request.getRequestDispatcher("view/falhaAgendamento.jsp").forward(request, response);
+			}
 
 		} catch (Exception e) {
 			e.printStackTrace();
