@@ -16,8 +16,17 @@
     <servlet-name>mapServelet2</servlet-name>
     <servlet-class>br.com.sus_online.controller.AgendaController</servlet-class>
   </servlet>
-  <servlet-mapping>
+   <servlet-mapping>
     <servlet-name>mapServelet2</servlet-name>
     <url-pattern>/agendarConsulta</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <servlet-name>mapServelet3</servlet-name>
+    <servlet-class>br.com.sus_online.controller.AjaxApp</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>mapServelet3</servlet-name>
+    <url-pattern>/ajaxApp</url-pattern>
+  </servlet-mapping>
+ 
 </web-app>
