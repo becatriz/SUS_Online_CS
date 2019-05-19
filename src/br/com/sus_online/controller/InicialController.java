@@ -37,7 +37,22 @@ public class InicialController extends HttpServlet {
 			irParaLogin(request, response);
 		}else if (action.equals("Login.do")) {
 			voltarPaginaLogado(request, response);
+		}else if(action.equals("exibir_perfil")) {
+			irParaPerfilUsuario(request, response);
 		}
+	}
+
+	private void irParaPerfilUsuario(HttpServletRequest request, HttpServletResponse response) {
+		RequestDispatcher rd = null;
+		rd = request.getRequestDispatcher("view/exibePerfilUsuario.jsp");
+
+		try {
+			rd.forward(request, response);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		
 	}
 
 	private void voltarPaginaLogado(HttpServletRequest request, HttpServletResponse response) {

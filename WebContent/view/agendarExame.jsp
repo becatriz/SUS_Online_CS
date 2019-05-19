@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Agendar Consultas</title>
+<title>Agendar Exames</title>
 
 <link rel="stylesheet" type="text/css"
 	href="./resources/bootstrap/css/logado.css">
@@ -78,7 +78,7 @@ S
 	<a class="navbar-brand" href="InicialController?action=Login.do">Voltar</a>
 
 	<div class="container">
-		<h2>Agendar Consultas</h2>
+		<h2>Agendar Exames</h2>
 		<hr>
 		<hr>
 
@@ -127,7 +127,19 @@ S
 				</div>
 			</div>
 
+		<div class="form-group">
+				<label class="control-label col-sm-2">Exame</label>
+				<div class="col-sm-3">
+					<select name="exame" class="form-control" id="exame">
+						<option selected>Selecionar</option>
+						<option value="Tomografia ">Tomografia</option>
+						<option value="Radiologia">Radiologia</option>
+						<option value="Urina">Urina</option>
+						<option value="Sangue ">Sangue</option>
+					</select>
+				</div>
 
+			</div>
 			<div class="form-group">
 				<label class="control-label col-sm-2">UBS - Unidade Básica
 					de Saúde</label>
@@ -142,31 +154,9 @@ S
 				</div>
 
 			</div>
-			<div class="form-group">
-				<label class="control-label col-sm-2">Especialidade</label>
-				<div class="col-sm-3">
-					<select name="especialidade" class="form-control" id="especialidade">
-						<option selected>Selecionar</option>
-						<option value="Cardiologista ">Cardiologista</option>
-						<option value="Clinico Geral">Clinico Geral</option>
-						<option value="Oftalmologista">Oftalmologista</option>
-					</select>
-				</div>
+			
 
-			</div>
-
-			<div class="form-group">
-				<label class="control-label col-sm-2">Médico(a)</label>
-				<div class="col-sm-3">
-					<select name="medico" class="form-control" id="medico">
-						<option selected>Selecionar</option>
-						<option value="Dr Sandra ">Dr Sandra</option>
-						<option value="Dr Rebeca">Dr Rebeca</option>
-						<option value="Dr Marcelo">Dr Marcelo</option>
-					</select>
-				</div>
-
-			</div>
+		
 			<div class="form-group">
 				<div class="col-sm-offset-2 col-sm-10">
 					<button type="submit" value="salvar" class="btn btn-default">Agendar</button>

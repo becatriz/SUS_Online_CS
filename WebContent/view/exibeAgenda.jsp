@@ -7,7 +7,7 @@
 <meta charset="ISO-8859-1">
 <title>Minha Agenda</title>
 <link rel="stylesheet" type="text/css"
-	href="./resources/bootstrap/css/logado.css">
+	href="./resources/bootstrap/css/exibeAgenda.css">
 
 <!-- jQuery CDN -->
 <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
@@ -18,11 +18,18 @@
 <script
 	src="//netdna.bootstrapcdn.com/bootstrap/3.0.2/js/bootstrap.min.js"></script>
 
-<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
-<!--[if lt IE 9]>
-    <script src="//oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-    <script src="//oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
-    <![endif]-->
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+
+<link rel="stylesheet"
+	href="http://code.jquery.com/ui/1.9.0/themes/base/jquery-ui.css" />
+<script src="http://code.jquery.com/jquery-1.8.2.js"></script>
+<script src="http://code.jquery.com/ui/1.9.0/jquery-ui.js"></script>
 
 <!-- Font Awesome CDN -->
 <link
@@ -39,28 +46,33 @@
 <link rel="stylesheet" type="text/css"
 	href="./resources/bootstrap/css/zabuto_calendar.min.css">
 
+<!-- Bootstrap para Calendario -->
+<link
+	href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css"
+	rel="stylesheet">
+<!-- JavaScript para Calendario da escolha da Data de Agendamento -->
+
+
 </head>
 <body>
 	<img src="./resources/bootstrap/img/portal_sus_online.png" width=100%
 		height=280px alt="" />
 	<a class="navbar-brand" href="InicialController?action=Login.do">Voltar</a>
 	<!-- container -->
-	<div class="container example">
+	<div class="">
 
 		<h1>
-			<span>Suas Consultas</span>
+			<span>Consultas e Exames</span>
 		</h1>
-
+		<h3></h3>
 		<hr>
 
 		<div class="row">
-			<div class="col-xs-5">
+			<div class="col-xs-3">
 
 				<div id="my-calendar"></div>
 
 				<script type="application/javascript">
-					
-					
 					
 					
 					
@@ -81,9 +93,69 @@
                     });
                 });
             	
+			
+				
+                $(function() {
+            		$("#calendario").datepicker(
+            				{
+            					dateFormat : 'dd/mm/yy',
+            					dayNames : [ 'Domingo', 'Segunda', 'Terça', 'Quarta',
+            							'Quinta', 'Sexta', 'Sábado', 'Domingo' ],
+            					dayNamesMin : [ 'D', 'S', 'T', 'Q', 'Q', 'S', 'S', 'D' ],
+            					dayNamesShort : [ 'Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex',
+            							'Sáb', 'Dom' ],
+            					monthNames : [ 'Janeiro', 'Fevereiro', 'Março', 'Abril',
+            							'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro',
+            							'Outubro', 'Novembro', 'Dezembro' ],
+            					monthNamesShort : [ 'Jan', 'Fev', 'Mar', 'Abr', 'Mai',
+            							'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez' ],
+            					changeMonth : true,
+            					changeYear : true,
+            					showOtherMonths : true,
+            					selectOtherMonths : true,
+
+            				});
+            	});
 				
 				
+        		
+                $(document).ready(function () {
+                    $("#my-calendar").zabuto_calendar({
+                    	language: "pt",
+                        cell_border: true,
+                        today: true,
+                        show_days: true,
+                        weekstartson: 0,
+                        nav_icon: {
+                            prev: '<i class="fa fa-chevron-circle-left"></i>',
+                            next: '<i class="fa fa-chevron-circle-right"></i>'
+                        }
+                    });
+                });
+            	
+			
 				
+                $(function() {
+            		$("#calendario1").datepicker(
+            				{
+            					dateFormat : 'dd/mm/yy',
+            					dayNames : [ 'Domingo', 'Segunda', 'Terça', 'Quarta',
+            							'Quinta', 'Sexta', 'Sábado', 'Domingo' ],
+            					dayNamesMin : [ 'D', 'S', 'T', 'Q', 'Q', 'S', 'S', 'D' ],
+            					dayNamesShort : [ 'Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex',
+            							'Sáb', 'Dom' ],
+            					monthNames : [ 'Janeiro', 'Fevereiro', 'Março', 'Abril',
+            							'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro',
+            							'Outubro', 'Novembro', 'Dezembro' ],
+            					monthNamesShort : [ 'Jan', 'Fev', 'Mar', 'Abr', 'Mai',
+            							'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez' ],
+            					changeMonth : true,
+            					changeYear : true,
+            					showOtherMonths : true,
+            					selectOtherMonths : true,
+
+            				});
+            	});
 				
 				
 				
@@ -92,16 +164,57 @@
 
 			</div>
 		</div>
+
+
 	</div>
 
 
+	<form class="form-horizontal1" action="agendarConsulta" method="post">
+		<div class="form-group">
+			<label class="control-label col-sm-2" for="data"></label>
 
-	<div class="container_dados">
+			<div class="col-sm-2">
+				<input type="text" class="form-control" id="calendario1"
+					placeholder="Data Inicial" name="data">
+					
+			</div>
+			
+			<div class="col-sm-2">
+				<input type="text" class="form-control" id="calendario"
+					placeholder="Data Final" name="data">
+					
+			</div>
+			
 
-	<form id="vt" action="AgendaController?action=irParaAgenda"
+
+
+		</div>
+		
+		
+		<div class="form-group">
+			<label class="control-label col-sm-2"> </label>
+			<div class="col-sm-2">
+				<select name="cidade" id="inputConsultaExame" class="form-control">
+
+					<option>Consultas</option>
+					<option>Exames</option>
+
+				</select>
+
+				<button type="submit" value="buscarAgenda" class="btn btn-default" id="botaoBuscar">Buscar</button>
+			</div>
+		</div>
+	</form>
+
+
+
+	<!--  
+	
+
+	<form class="vt" action="AgendaController?action=irParaAgenda"
 		method="get">
 
-		<table border=1 >
+		<table border=5 >
 			<tr>
 				<th>Data</th>
 				<th>Hora</th>
@@ -126,12 +239,13 @@
 		<br />
 	</form>
 
-	</div>
+
 	<div class="form-group">
 		<div class="col-sm-offset-2 col-sm-10">
 			<button type="submit" value="reagendar" class="btn btn-default">Reagendar</button>
 		</div>
 	</div>
+	-->
 	<!-- /container -->
 </body>
 </html>

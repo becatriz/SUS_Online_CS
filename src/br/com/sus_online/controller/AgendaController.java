@@ -44,7 +44,22 @@ public class AgendaController extends HttpServlet {
 			irParaAgenda(request, response);
 		} else if (action.equals("agendar_consulta")) {
 			irAgendarConsulta(request, response);
+		}else if(action.contentEquals("agendar_exame")){
+			irAgendarExame(request, response);
 		}
+	}
+
+	private void irAgendarExame(HttpServletRequest request, HttpServletResponse response) {
+		RequestDispatcher rd = null;
+		rd = request.getRequestDispatcher("view/agendarExame.jsp");
+
+		try {
+			rd.forward(request, response);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		
 	}
 
 	// Metodo para agendar Consulta
