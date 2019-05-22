@@ -32,21 +32,22 @@ public class DaoConsultasExames {
 
 		Connection con = this.getConnection();
 
-		String sql = "INSERT INTO consultas_agendadas(data, hora, cidade, estado, ubs, medico, especialidade, id_usuario)"
-				+ "values (?, ?, ?, ?, ?, ?, ?, ?)";
+		String sql = "INSERT INTO consultas_agendadas(data, hora, estado, cidade, ubs, especialidade, medico, id_usuario, nome)"
+				+ "values (?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
 		try {
 
 			PreparedStatement stmt = con.prepareStatement(sql);
-			int a = agenda.getIdUsuario();
+			//int a = agenda.getIdUsuario();
 			stmt.setString(1, agenda.getData());
 			stmt.setString(2, agenda.getHora());
-			stmt.setString(3, agenda.getCidade());
-			stmt.setString(4, agenda.getEstado());
+			stmt.setString(3, agenda.getEstado());
+			stmt.setString(4, agenda.getCidade());
 			stmt.setString(5, agenda.getUbs());
-			stmt.setString(6, agenda.getMedico());
-			stmt.setString(7, agenda.getEspecialidade());
+			stmt.setString(6, agenda.getEspecialidade());
+			stmt.setString(7, agenda.getMedico());
 			stmt.setInt(8, agenda.getIdUsuario());
+			stmt.setString(9, agenda.getNome());
 
 			stmt.execute();
 			stmt.close();
@@ -77,8 +78,8 @@ public class DaoConsultasExames {
 				ag.setData(rs.getString("data"));
 				ag.setHora(rs.getString("hora"));
 				ag.setUbs(rs.getString("ubs"));
-				ag.setMedico(rs.getString("medico"));
-				ag.setEspecialidade(rs.getString("especialidade"));
+				ag.setMedico(rs.getString("especialidade"));
+				ag.setEspecialidade(rs.getString("medico"));
 
 
 				// adicionando o objeto à lista

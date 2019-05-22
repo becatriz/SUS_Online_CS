@@ -68,7 +68,7 @@ p>input {
 	});
 </script>
 
-S
+
 
 
 </head>
@@ -93,7 +93,7 @@ S
 
 				<label class="control-label col-sm-1" for="data">Hora:</label>
 				<div class="col-sm-3">
-					<select name="hora" id="inputCidade" class="form-control">
+					<select name="hora" id="inputHora" class="form-control">
 						<option selected>Hora</option>
 						<option>13:00</option>
 						<option>14:00</option>
@@ -105,16 +105,7 @@ S
 				</div>
 
 			</div>
-			<div class="form-group">
-				<label class="control-label col-sm-2">Cidade</label>
-				<div class="col-sm-3">
-					<select name="cidade" id="inputCidade" class="form-control">
-						<option selected>Selecionar</option>
-						<option>Campo Grande</option>
 
-					</select>
-				</div>
-			</div>
 
 			<div class="form-group">
 				<label class="control-label col-sm-2">Estado</label>
@@ -122,12 +113,21 @@ S
 					<select required name="estado" id="inputEstado"
 						class="form-control">
 						<option selected>Selecionar</option>
-						<option>Mato Grosso do Sul</option>
+						<option value="Mato Grosso do Sul">Mato Grosso do Sul</option>
 					</select>
 				</div>
 			</div>
 
+			<div class="form-group">
+				<label class="control-label col-sm-2">Cidade</label>
+				<div class="col-sm-3">
+					<select name="cidade" id="inputCidade" class="form-control">
+						<option selected>Selecionar</option>
+						<option value="Campo Grande">Campo Grande</option>
 
+					</select>
+				</div>
+			</div>
 			<div class="form-group">
 				<label class="control-label col-sm-2">UBS - Unidade Básica
 					de Saúde</label>
@@ -145,7 +145,8 @@ S
 			<div class="form-group">
 				<label class="control-label col-sm-2">Especialidade</label>
 				<div class="col-sm-3">
-					<select name="especialidade" class="form-control" id="especialidade">
+					<select name="especialidade" class="form-control"
+						id="especialidade">
 						<option selected>Selecionar</option>
 						<option value="Cardiologista ">Cardiologista</option>
 						<option value="Clinico Geral">Clinico Geral</option>

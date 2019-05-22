@@ -130,22 +130,22 @@ public class AgendaController extends HttpServlet {
 
 		String data = request.getParameter("data");
 		String hora = request.getParameter("hora");
-		String cidade = request.getParameter("cidade");
 		String estado = request.getParameter("estado");
+		String cidade = request.getParameter("cidade");
 		String ubs = request.getParameter("ubs");
-		String medico = request.getParameter("medico");
 		String especialidade = request.getParameter("especialidade");
-
+		String medico = request.getParameter("medico");
 		AgendaConsulta agenda = new AgendaConsulta();
 
 		agenda.setData(data);
 		agenda.setHora(hora);
-		agenda.setCidade(cidade);
-		agenda.setEstado(estado);
+		agenda.setCidade(estado);
+		agenda.setEstado(cidade);
 		agenda.setUbs(ubs);
-		agenda.setMedico(medico);
-		agenda.setEspecialidade(especialidade);
+		agenda.setMedico(especialidade);
+		agenda.setEspecialidade(medico);
 		agenda.setIdUsuario(usu.getId());
+		agenda.setNome(usu.getNome());
 		try {
 
 			

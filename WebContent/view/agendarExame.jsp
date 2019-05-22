@@ -106,23 +106,23 @@ S
 
 			</div>
 			<div class="form-group">
-				<label class="control-label col-sm-2">Cidade</label>
+				<label class="control-label col-sm-2">Estado</label>
 				<div class="col-sm-3">
-					<select name="cidade" id="inputCidade" class="form-control">
+					<select name="estado" id="inputEstado" class="form-control">
 						<option selected>Selecionar</option>
-						<option>Campo Grande</option>
+						<option>Mato Grosso do Sul</option>
 
 					</select>
 				</div>
 			</div>
 
 			<div class="form-group">
-				<label class="control-label col-sm-2">Estado</label>
+				<label class="control-label col-sm-2">Cidade</label>
 				<div class="col-sm-3">
-					<select required name="estado" id="inputEstado"
+					<select required name="cidade" id="inputCidade"
 						class="form-control">
 						<option selected>Selecionar</option>
-						<option>Mato Grosso do Sul</option>
+						<option>Campo Grande</option>
 					</select>
 				</div>
 			</div>
