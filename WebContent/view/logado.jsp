@@ -37,13 +37,16 @@
 				href="InicialController?action=iniciar_login_conta" role="button">Sair</a>
 			<a style="margin-right: 5px;"
 				class="btn btn-sm btn-success active navbar-right offset"
-				href="AgendaController?action=consulta_agenda" role="button">Consultar
-				Agenda</a> <a style="margin-right: 5px;"
+				href="ConsultasController?action=consulta_agenda" role="button">Consultas Agendadas</a> 
+				<a style="margin-right: 5px;"
 				class="btn btn-sm btn-success active navbar-right offset"
-				href="AgendaController?action=agendar_consulta" role="button">Agendar
+				href="ExamesController?action=consultar_exames" role="button">Exames Agendadoss</a>
+				<a style="margin-right: 5px;"
+				class="btn btn-sm btn-success active navbar-right offset"
+				href="ConsultasController?action=agendar_consulta" role="button">Agendar
 				Consultas</a> <a style="margin-right: 5px;"
 				class="btn btn-sm btn-success active navbar-right offset"
-				href="AgendaController?action=agendar_exame" role="button">Agendar
+				href="ExamesController?action=agendar_exames" role="button">Agendar
 				Exames</a>
 				<a style="margin-right: 5px;"
 				class="btn btn-sm btn-success active navbar-right offset"

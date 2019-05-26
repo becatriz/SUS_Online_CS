@@ -16,18 +16,7 @@ public class AgendaConsulta extends Autentica_Usuario {
 	String especialidade;
 	int idUsuario;
 
-	public int getIdUsuario() {
-		return idUsuario;
-	}
-
-
-
-
-
-	public void setIdUsuario(int idUsuario) {
-		this.idUsuario = idUsuario;
-	}
-
+	
 
 
 
@@ -39,6 +28,17 @@ public class AgendaConsulta extends Autentica_Usuario {
 
 
 
+	public int getIdUsuario() {
+		return idUsuario;
+	}
+
+
+
+
+
+	public void setIdUsuario(int idUsuario) {
+		this.idUsuario = idUsuario;
+	}
 
 
 	@Override

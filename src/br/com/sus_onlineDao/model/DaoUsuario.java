@@ -9,6 +9,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import br.com.sus_online.model.AgendaConsulta;
 import br.com.sus_online.model.Autentica_Usuario;
 
 public class DaoUsuario {
@@ -79,6 +80,42 @@ public class DaoUsuario {
 			}
 		}
 		return null;
+	}
+	
+	public List<Autentica_Usuario> getListaUsuarios() {
+
+		try {
+			Connection c = this.getConnection();
+			PreparedStatement ps = null;
+			ResultSet rs = null;
+
+			ps = c.prepareStatement("select id, nome, usuario from autentica_usuario");
+			
+
+			rs = ps.executeQuery();
+
+			List<Autentica_Usuario> users = new ArrayList<Autentica_Usuario>();
+			while (rs.next()) {
+				// criando o objeto Autentica_Usuario
+				Autentica_Usuario auten = new Autentica_Usuario();
+				
+				auten.setid(rs.getInt("id"));
+				auten.setNome(rs.getString("nome"));
+				auten.setUsuario(rs.getString("usuario"));
+				
+				
+
+
+				// adicionando o objeto à lista
+				users.add(auten);
+
+			}
+			rs.close();
+			ps.close();
+			return users;
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		}
 	}
 
 	public Autentica_Usuario findByUser(String usuario) {

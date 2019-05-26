@@ -25,15 +25,7 @@
 	<img src="./resources/bootstrap/img/portal_sus_online.png" width=100%
 		height=280px alt="" />
 
-	<c:choose>
-		<c:when test="${ user eq null }">
-			<jsp:forward page="aviso_nao_tem_conta_criada.jsp" />
-		</c:when>
-		<c:otherwise>
-			<p>Usuário ${ user.nome } logado(a)</p>
-		</c:otherwise>
 
-	</c:choose>
 
 
 	<div class="navbar">
@@ -46,88 +38,77 @@
 
 		</div>
 	</div>
-	<h1>Perfil do Usuário</h1>
-	<div class="container">
-		<div class="row">
-			<div class="col-md-5  toppad  pull-right col-md-offset-3 "></div>
-			<div
-				class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xs-offset-0 col-sm-offset-0 col-md-offset-3 col-lg-offset-3 toppad">
+	<h1>Histórico de Consultas e Exames</h1>
+
+	<form class="vt" action="InicialController?action=irParaPerfilUsuario"
+		method="get">
+		<h4>Exames</h4>
+		<table border=5>
+			<tr>
+
+				<th>Data</th>
+				<th>Hora</th>
+				<th>Estado</th>
+				<th>Cidade</th>
+				<th>Posto</th>
+				<th>Exame</th>
 
 
-				<div class="panel panel-info">
-					<div class="panel-heading">
-						<h3 class="panel-title">Perfil do Paciente</h3>
-					</div>
-					<div class="panel-body">
-						<div class="row">
-							<div class="col-md-3 col-lg-2 " align="center"></div>
 
-							<div class=" col-md-9 col-lg-10 ">
-								<table class="table table-user-information">
-									<tbody>
-										<tr>
-											<td><h3>Informações Pessoais</h3></td>
+			</tr>
+			<c:forEach var="linha" items="${listaAgenda}">
+				<tr>
 
-										</tr>
-										<tr>
-											<td>Nome Completo:</td>
-											<td>Buscar todas a informaçõe do usuario completo do
-												Banco de dados</td>
-										</tr>
-										<tr>
-											<td>Idade:</td>
-											<td>20</td>
-										</tr>
+					<td>${linha.data}</td>
+					<td>${linha.hora}</td>
+					<td>${linha.estado}</td>
+					<td>${linha.cidade}</td>
+					<td>${linha.ubs}</td>
+					<td>${linha.exame}</td>
 
-										<tr>
-										<tr>
-											<td>Sexo:</td>
-											<td>Feminino</td>
-										</tr>
-										<tr>
-											<td>Estado Civil</td>
-											<td>Solteiro(a)</td>
 
-										</tr>
-										<tr>
-											<td>Endereço:</td>
-											<td>Rua: Jose Antonio n 102 Bairro: Jardim</td>
 
-										</tr>
 
-										<tr>
-											<td>Celular:</td>
-											<td>67 9999-9999</td>
-										</tr>
-										<tr>
-											<td>Telefone Fixo:</td>
-											<td>67 3333-3333</td>
-										</tr>
 
-										<tr>
-											<td>Tipo Sanguineo:</td>
-											<td>O -</td>
+				</tr>
+			</c:forEach>
 
-										</tr>
-										<tr>
-											<td><b>Informações de Histórico de Consultas</b></td>
-										</tr>
-										<tr>
-											<td><b>Informações de Histórico de Exames</b></td>
-										</tr>
-										<tr>
-											<td><b>Informações de Medicamentos</b></td>
-										</tr>
-										<tr>
-									</tbody>
-								</table>
+		</table>
+		<br>
+		<br>
+		<h4>Consultas</h4>
+		<table border=5>
+			<tr>
 
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
+				<th>Data</th>
+				<th>Hora</th>
+				<th>Estado</th>
+				<th>Cidade</th>
+				<th>Medico</th>
+				<th>Especialidade</th>
+
+
+
+			</tr>
+			<c:forEach var="linha" items="${listaAgendaExame}">
+				<tr>
+
+					<td>${linha.data}</td>
+					<td>${linha.hora}</td>
+					<td>${linha.estado}</td>
+					<td>${linha.cidade}</td>
+					<td>${linha.medico}</td>
+					<td>${linha.especialidade}</td>
+
+
+
+
+
+				</tr>
+			</c:forEach>
+		</table>
+		<br />
+	</form>
+
 
 </body>

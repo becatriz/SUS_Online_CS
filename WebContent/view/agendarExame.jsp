@@ -68,7 +68,6 @@ p>input {
 	});
 </script>
 
-S
 
 
 </head>
@@ -81,30 +80,11 @@ S
 		<h2>Agendar Exames</h2>
 		<hr>
 		<hr>
-
-		<form class="form-horizontal" action="agendarConsulta" method="post">
-			<div class="form-group">
-				<label class="control-label col-sm-2" for="data">Data:</label>
-
-				<div class="col-sm-3">
-					<input type="text" class="form-control" id="calendario"
-						placeholder="Escolha uma data" name="data">
-				</div>
-
-				<label class="control-label col-sm-1" for="data">Hora:</label>
-				<div class="col-sm-3">
-					<select name="hora" id="inputCidade" class="form-control">
-						<option selected>Hora</option>
-						<option>13:00</option>
-						<option>14:00</option>
-						<option>15:00</option>
-						<option>16:00</option>
-						<option>17:00</option>
-
-					</select>
-				</div>
-
-			</div>
+		<div id="divMensagem">
+			<h4 id="mensagem" style="color: red;">${mensagem}</h4>
+		</div>
+		<form class="form-horizontal" id="form" action="agendarExames" method="post">
+			<div class="form-group"></div>
 			<div class="form-group">
 				<label class="control-label col-sm-2">Estado</label>
 				<div class="col-sm-3">
@@ -127,7 +107,7 @@ S
 				</div>
 			</div>
 
-		<div class="form-group">
+			<div class="form-group">
 				<label class="control-label col-sm-2">Exame</label>
 				<div class="col-sm-3">
 					<select name="exame" class="form-control" id="exame">
@@ -154,19 +134,72 @@ S
 				</div>
 
 			</div>
-			
 
-		
+			<div class="form-group">
+				<label class="control-label col-sm-2" for="data">Data:</label>
+
+				<div class="col-sm-3">
+					<input type="text" class="form-control" id="calendario"
+						placeholder="Escolha uma data" name="data" required>
+				</div>
+
+				<label class="control-label col-sm-1" for="hora">Hora:</label>
+				<div class="col-sm-3">
+					<select name="hora" id="inputHora" class="form-control" required>
+						<option selected value="null">Hora</option>
+						<option>13:00</option>
+						<option>14:00</option>
+						<option>15:00</option>
+						<option>16:00</option>
+						<option>17:00</option>
+
+					</select>
+				</div>
+
+			</div>
+
+
+			
 			<div class="form-group">
 				<div class="col-sm-offset-2 col-sm-10">
-					<button type="submit" value="salvar" class="btn btn-default">Agendar</button>
+					<button type="button" id="salvarExame" value="salvarExame" onclick="return validar()" class="btn btn-default">Agendar</button>
 				</div>
 			</div>
 		</form>
 	</div>
 
 
+	<script type="text/javascript">
+		function ocultar() {
+			if (document.getElementById('mensagem').textContent.length == 0) {
+				document.getElementById('divMensagem').style.display = 'none';
+			} else {
+				document.getElementById('divMensagem').style.display = 'block';
+			}
+		}
+	</script>
 
+	<script type="text/javascript">
+		function validar() {
+			var estado = document.getElementById('inputEstado').value;
+			var cidade = document.getElementById('inputCidade').value;
+			var exame = document.getElementById('exame').value;
+			var ubs = document.getElementById('ubs').value;
+			var data = document.getElementById('calendario').value;
+			var hora = document.getElementById('inputHora').value;
+
+			if (data == "null" || hora == "null" || estado == "null"
+					|| cidade == "null" || ubs == "null"
+					|| calendario == "null" || exame == "null") {
+				document.getElementById('mensagem').textContent = "Todos os campos devem estar preenchidos.";
+				ocultar();
+				return false;
+
+			} else {
+				document.getElementById("form").submit();
+			}
+		}
+	</script>
 
 
 

@@ -13,22 +13,22 @@ import javax.servlet.http.HttpSession;
 
 import br.com.sus_online.model.AgendaConsulta;
 import br.com.sus_online.model.Autentica_Usuario;
-import br.com.sus_onlineDao.model.DaoConsultasExames;
+import br.com.sus_onlineDao.model.DaoConsultaseExames;
 
 /**
- * Servlet implementation class AgendaController
+ * Servlet implementation class ConsultasController
  */
-@WebServlet("/AgendaController")
-public class AgendaController extends HttpServlet {
+@WebServlet("/ConsultasController")
+public class ConsultasController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	private DaoConsultasExames daoConsultaExame = new DaoConsultasExames();
-	DaoConsultasExames dao = new DaoConsultasExames();
+	private DaoConsultaseExames daoConsultaExame = new DaoConsultaseExames();
+	DaoConsultaseExames dao = new DaoConsultaseExames();
 
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
-	public AgendaController() {
+	public ConsultasController() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
@@ -44,23 +44,10 @@ public class AgendaController extends HttpServlet {
 			irParaAgenda(request, response);
 		} else if (action.equals("agendar_consulta")) {
 			irAgendarConsulta(request, response);
-		}else if(action.contentEquals("agendar_exame")){
-			irAgendarExame(request, response);
-		}
+		} 
 	}
 
-	private void irAgendarExame(HttpServletRequest request, HttpServletResponse response) {
-		RequestDispatcher rd = null;
-		rd = request.getRequestDispatcher("view/agendarExame.jsp");
 
-		try {
-			rd.forward(request, response);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-
-		
-	}
 
 	// Metodo para agendar Consulta
 	private void irAgendarConsulta(HttpServletRequest request, HttpServletResponse response) {
@@ -84,16 +71,15 @@ public class AgendaController extends HttpServlet {
 			Autentica_Usuario usu = (Autentica_Usuario) sessao.getAttribute("user");
 
 			List<AgendaConsulta> agenda = daoConsultaExame.getLista(usu.getId());
-			
+
 			if (agenda.size() > 0) {
 				request.setAttribute("listaAgenda", agenda);
 				request.setAttribute("temAgenda", true);
-			}
-			else {
+			} else {
 				request.setAttribute("temAgenda", false);
 			}
-			
-			request.getRequestDispatcher("view/exibeAgenda.jsp").forward(request, response);
+
+			request.getRequestDispatcher("view/exibeAgendaConsulta.jsp").forward(request, response);
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -135,12 +121,20 @@ public class AgendaController extends HttpServlet {
 		String ubs = request.getParameter("ubs");
 		String especialidade = request.getParameter("especialidade");
 		String medico = request.getParameter("medico");
+
+		if (data.equals("null") || hora.equals("null") || estado.equals("null") || cidade.equals("null")
+				|| ubs.equals("null") || especialidade.equals("null") || medico.equals("null")) {
+			String msg = "Todos os campos devem estar preenchidos.";
+			request.setAttribute("mensagem", msg);
+			request.getRequestDispatcher("view/agendarConsulta.jsp").forward(request, response);
+		}
+
 		AgendaConsulta agenda = new AgendaConsulta();
 
 		agenda.setData(data);
 		agenda.setHora(hora);
-		agenda.setCidade(estado);
-		agenda.setEstado(cidade);
+		agenda.setEstado(estado);
+		agenda.setCidade(cidade);
 		agenda.setUbs(ubs);
 		agenda.setMedico(especialidade);
 		agenda.setEspecialidade(medico);
@@ -148,10 +142,8 @@ public class AgendaController extends HttpServlet {
 		agenda.setNome(usu.getNome());
 		try {
 
-			
 			List<AgendaConsulta> agendaMarcada = daoConsultaExame.getLista(usu.getId());
-			
-			
+
 			boolean agendar = true;
 			for (AgendaConsulta ag : agendaMarcada) {
 				String d1 = agenda.getData();
@@ -165,11 +157,10 @@ public class AgendaController extends HttpServlet {
 			}
 			if (agendar) {
 
-				daoConsultaExame.salvar(agenda);
+				daoConsultaExame.salvarConsulta(agenda);
 				request.setAttribute("mensagem", "Salvo");
 				request.getRequestDispatcher("view/sucessoAgendamento.jsp").forward(request, response);
-			}
-			else {
+			} else {
 				String msg = "Já existe uma consulta no mesmo dia e horário.";
 				request.setAttribute("mensagem", msg);
 				request.getRequestDispatcher("view/falhaAgendamento.jsp").forward(request, response);

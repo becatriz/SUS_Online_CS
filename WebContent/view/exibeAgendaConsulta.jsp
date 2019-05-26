@@ -52,6 +52,26 @@
 	rel="stylesheet">
 <!-- JavaScript para Calendario da escolha da Data de Agendamento -->
 
+<style>
+.vtr {
+	margin-left: 320px;
+	margin-top: -250px;
+}
+
+#calendario1 {
+	margin-top: -320px;
+}
+
+#calendario {
+	margin-top: -320px;
+}
+
+#botaoBuscarAgenda{
+	margin-top: 110px;
+}
+
+</style>
+
 
 </head>
 <body>
@@ -62,7 +82,7 @@
 	<div class="">
 
 		<h1>
-			<span>Consultas e Exames</span>
+			<span>Consultas</span>
 		</h1>
 		<h3></h3>
 		<hr>
@@ -73,6 +93,7 @@
 				<div id="my-calendar"></div>
 
 				<script type="application/javascript">
+					
 					
 					
 					
@@ -160,6 +181,7 @@
 				
 				
 				
+				
 				</script>
 
 			</div>
@@ -176,45 +198,31 @@
 			<div class="col-sm-2">
 				<input type="text" class="form-control" id="calendario1"
 					placeholder="Data Inicial" name="data">
-					
+
 			</div>
-			
+
 			<div class="col-sm-2">
 				<input type="text" class="form-control" id="calendario"
 					placeholder="Data Final" name="data">
-					
+
 			</div>
 			
-
-
-
+			
 		</div>
+
+
 		
-		
-		<div class="form-group">
-			<label class="control-label col-sm-2"> </label>
-			<div class="col-sm-2">
-				<select name="cidade" id="inputConsultaExame" class="form-control">
 
-					<option>Consultas</option>
-					<option>Exames</option>
-
-				</select>
-
-				<button type="submit" value="buscarAgenda" class="btn btn-default" id="botaoBuscar">Buscar</button>
-			</div>
-		</div>
 	</form>
 
 
 
-	<!--  
-	
 
-	<form class="vt" action="AgendaController?action=irParaAgenda"
+
+	<form class="vtr" action="ConsultasController?action=irParaAgenda"
 		method="get">
 
-		<table border=5 >
+		<table border=5>
 			<tr>
 				<th>Data</th>
 				<th>Hora</th>
@@ -237,15 +245,14 @@
 			</c:forEach>
 		</table>
 		<br />
+		<button type="submit" value="buscarAgenda" class="btn btn-default"
+			id="botaoBuscarAgenda">Buscar</button>
+		
 	</form>
 
 
-	<div class="form-group">
-		<div class="col-sm-offset-2 col-sm-10">
-			<button type="submit" value="reagendar" class="btn btn-default">Reagendar</button>
-		</div>
-	</div>
-	-->
+
+
 	<!-- /container -->
 </body>
 </html>

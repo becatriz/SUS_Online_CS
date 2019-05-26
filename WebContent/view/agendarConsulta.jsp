@@ -66,6 +66,8 @@ p>input {
 
 				});
 	});
+	
+	
 </script>
 
 
@@ -81,48 +83,27 @@ p>input {
 		<h2>Agendar Consultas</h2>
 		<hr>
 		<hr>
-
-		<form class="form-horizontal" action="agendarConsulta" method="post">
-			<div class="form-group">
-				<label class="control-label col-sm-2" for="data">Data:</label>
-
-				<div class="col-sm-3">
-					<input type="text" class="form-control" id="calendario"
-						placeholder="Escolha uma data" name="data">
-				</div>
-
-				<label class="control-label col-sm-1" for="data">Hora:</label>
-				<div class="col-sm-3">
-					<select name="hora" id="inputHora" class="form-control">
-						<option selected>Hora</option>
-						<option>13:00</option>
-						<option>14:00</option>
-						<option>15:00</option>
-						<option>16:00</option>
-						<option>17:00</option>
-
-					</select>
-				</div>
-
-			</div>
-
+		<div id="divMensagem"><h4 id="mensagem" style="color:red;">${mensagem}</h4></div>
+		<form class="form-horizontal" id="form" action="agendarConsulta" method="post">
+			
 
 			<div class="form-group">
 				<label class="control-label col-sm-2">Estado</label>
 				<div class="col-sm-3">
 					<select required name="estado" id="inputEstado"
-						class="form-control">
-						<option selected>Selecionar</option>
+						class="form-control" required>
+						<option selected value="null">Selecionar</option>
 						<option value="Mato Grosso do Sul">Mato Grosso do Sul</option>
 					</select>
 				</div>
 			</div>
+			
 
 			<div class="form-group">
 				<label class="control-label col-sm-2">Cidade</label>
 				<div class="col-sm-3">
-					<select name="cidade" id="inputCidade" class="form-control">
-						<option selected>Selecionar</option>
+					<select name="cidade" id="inputCidade" class="form-control required">
+						<option selected value="null">Selecionar</option>
 						<option value="Campo Grande">Campo Grande</option>
 
 					</select>
@@ -132,8 +113,8 @@ p>input {
 				<label class="control-label col-sm-2">UBS - Unidade Básica
 					de Saúde</label>
 				<div class="col-sm-3">
-					<select name="ubs" class="form-control" id="ubs">
-						<option selected>Selecionar</option>
+					<select name="ubs" class="form-control" id="ubs" required>
+						<option selected value="null">Selecionar</option>
 						<option value="Posto Nova Bahia ">Posto Nova Bahia</option>
 						<option value="Posto Coronel Antonino">Posto Coronel
 							Antonino</option>
@@ -146,8 +127,8 @@ p>input {
 				<label class="control-label col-sm-2">Especialidade</label>
 				<div class="col-sm-3">
 					<select name="especialidade" class="form-control"
-						id="especialidade">
-						<option selected>Selecionar</option>
+						id="especialidade" required>
+						<option selected value="null">Selecionar</option>
 						<option value="Cardiologista ">Cardiologista</option>
 						<option value="Clinico Geral">Clinico Geral</option>
 						<option value="Oftalmologista">Oftalmologista</option>
@@ -159,8 +140,8 @@ p>input {
 			<div class="form-group">
 				<label class="control-label col-sm-2">Médico(a)</label>
 				<div class="col-sm-3">
-					<select name="medico" class="form-control" id="medico">
-						<option selected>Selecionar</option>
+					<select name="medico" class="form-control" id="medico" required>
+						<option value="null">Selecionar</option>
 						<option value="Dr Sandra ">Dr Sandra</option>
 						<option value="Dr Rebeca">Dr Rebeca</option>
 						<option value="Dr Marcelo">Dr Marcelo</option>
@@ -168,16 +149,70 @@ p>input {
 				</div>
 
 			</div>
+			
+			
+			<div class="form-group">
+				<label class="control-label col-sm-2" for="data">Data:</label>
+
+				<div class="col-sm-3">
+					<input type="text" class="form-control" id="calendario"
+						placeholder="Escolha uma data" name="data" required>
+				</div>
+
+				<label class="control-label col-sm-1" for="data">Hora:</label>
+				<div class="col-sm-3">
+					<select name="hora" id="inputHora" class="form-control" required>
+						<option selected value="null" >Hora</option>
+						<option>13:00</option>
+						<option>14:00</option>
+						<option>15:00</option>
+						<option>16:00</option>
+						<option>17:00</option>
+
+					</select>
+				</div>
+
+			</div>
+			
 			<div class="form-group">
 				<div class="col-sm-offset-2 col-sm-10">
-					<button type="submit" value="salvar" class="btn btn-default">Agendar</button>
+					<button type="button" id="salvarConsulta" value="salvarConsulta" onclick="return validar()" class="btn btn-default">Agendar</button>
 				</div>
 			</div>
 		</form>
 	</div>
 
 
+<script type="text/javascript">
+function ocultar(){
+	if (document.getElementById('mensagem').textContent.length == 0){
+		document.getElementById('divMensagem').style.display = 'none';
+	}
+	else
+		document.getElementById('divMensagem').style.display = 'block';
+}
+</script>
+<script type="text/javascript">
 
+function validar(){
+	var estado = document.getElementById('inputEstado').value;
+	var cidade = document.getElementById('inputCidade').value;
+	var ubs = document.getElementById('ubs').value;
+	var especialidade = document.getElementById('especialidade').value;
+	var medico = document.getElementById('medico').value;
+	var data = document.getElementById('calendario').value;
+	var hora = document.getElementById('inputHora').value;
+	if (data == "null" || hora == "null" || cidade == "null" || estado== "null"
+		|| ubs== "null" || especialidade== "null" ||medico== "null"){
+		document.getElementById('mensagem').textContent = "Todos os campos devem estar preenchidos.";
+		ocultar();
+		return false;
+	}
+	else{
+		 document.getElementById("form").submit();
+	}
+}
+</script>
 
 
 

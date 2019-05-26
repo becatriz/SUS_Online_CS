@@ -22,7 +22,7 @@
 			<jsp:forward page="aviso_nao_tem_conta_criada.jsp" />
 		</c:when>
 		<c:otherwise>
-			<p>Consultas agendadas para ${ user.nome} com Sucesso!</p>
+			<p>Agendamento para ${ user.nome} efetuado com sucesso!</p>
 		
 			
 		</c:otherwise>
@@ -40,12 +40,8 @@
 				style="margin-right: 5px;"
 				class="btn btn-sm btn-success active navbar-right offset"
 				href="InicialController?action=iniciar_login_conta" role="button">Sair</a>
-			<a style="margin-right: 5px;"
-				class="btn btn-sm btn-success active navbar-right offset"
-				href="AgendaController?action=consulta_agenda" role="button">Agenda</a>
-			<a style="margin-right: 5px;"
-				class="btn btn-sm btn-success active navbar-right offset"
-				href="AgendaController?action=agendar_consulta" role="button">Agendamento</a>
+			<a class="navbar-brand" href="InicialController?action=Login.do">Voltar</a>
+			
 		</div>
 	</div>
 
