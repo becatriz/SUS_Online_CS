@@ -59,17 +59,18 @@
 }
 
 #calendario1 {
+	margin-left: 100px;
 	margin-top: -320px;
 }
 
 #calendario {
+	margin-left: 100px;
 	margin-top: -320px;
 }
 
-#botaoBuscarAgenda{
+#botaoBuscarAgenda {
 	margin-top: 110px;
 }
-
 </style>
 
 
@@ -93,6 +94,9 @@
 				<div id="my-calendar"></div>
 
 				<script type="application/javascript">
+					
+					
+					
 					
 					
 					
@@ -182,6 +186,9 @@
 				
 				
 				
+				
+				
+				
 				</script>
 
 			</div>
@@ -191,64 +198,59 @@
 	</div>
 
 
-	<form class="form-horizontal1" action="agendarConsulta" method="post">
+
+
+
+
+	<form class="vtr" action="ConsultasController?action=irConsultaExame"
+		method="get">
+
 		<div class="form-group">
 			<label class="control-label col-sm-2" for="data"></label>
 
 			<div class="col-sm-2">
 				<input type="text" class="form-control" id="calendario1"
-					placeholder="Data Inicial" name="data">
+					placeholder="Data Inicial" name="dataIni">
 
 			</div>
 
 			<div class="col-sm-2">
 				<input type="text" class="form-control" id="calendario"
-					placeholder="Data Final" name="data">
+					placeholder="Data Final" name="dataFim">
 
 			</div>
-			
-			
+
+
 		</div>
 
-
-		
-
-	</form>
-
-
-
-
-
-	<form class="vtr" action="ConsultasController?action=irParaAgenda"
-		method="get">
-
-		<table border=5>
-			<tr>
-				<th>Data</th>
-				<th>Hora</th>
-				<th>Posto</th>
-				<th>Medico</th>
-				<th>Especialidade</th>
-
-			</tr>
-			<c:forEach var="linha" items="${listaAgenda}">
-				<tr>
-					<td>${linha.data}</td>
-					<td>${linha.hora}</td>
-					<td>${linha.ubs}</td>
-					<td>${linha.medico}</td>
-					<td>${linha.especialidade}</td>
-
-
-
-				</tr>
-			</c:forEach>
-		</table>
 		<br />
 		<button type="submit" value="buscarAgenda" class="btn btn-default"
 			id="botaoBuscarAgenda">Buscar</button>
-		
+
 	</form>
+
+	<table border=5>
+		<tr>
+			<th>Data</th>
+			<th>Hora</th>
+			<th>Posto</th>
+			<th>Medico</th>
+			<th>Especialidade</th>
+
+		</tr>
+		<c:forEach var="linha" items="${listaAgenda}">
+			<tr>
+				<td>${linha.data}</td>
+				<td>${linha.hora}</td>
+				<td>${linha.ubs}</td>
+				<td>${linha.medico}</td>
+				<td>${linha.especialidade}</td>
+
+
+
+			</tr>
+		</c:forEach>
+	</table>
 
 
 

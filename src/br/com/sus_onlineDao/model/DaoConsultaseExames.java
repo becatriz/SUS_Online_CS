@@ -6,6 +6,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import br.com.sus_online.model.AgendaConsulta;
@@ -94,6 +95,44 @@ public class DaoConsultaseExames {
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
 		}
+	}
+	
+	public List<AgendaConsulta> getListaPeriodo(int id_usuario, Date dataIni, Date dataFim){
+		try {
+			Connection c = this.getConnection();
+			PreparedStatement ps = null;
+			ResultSet rs = null;
+
+			ps = c.prepareStatement("select data, hora, estado, cidade, ubs, medico, especialidade from consultas_agendadas where id_usuario = ? and data between ? and ?");
+			ps.setInt(1, id_usuario);
+			ps.setDate(2, (java.sql.Date) dataIni);
+			ps.setDate(3, (java.sql.Date)dataFim);
+
+			rs = ps.executeQuery();
+
+			List<AgendaConsulta> agendados = new ArrayList<AgendaConsulta>();
+			while (rs.next()) {
+				// criando o objeto AgendaConsulta
+				AgendaConsulta ag = new AgendaConsulta();
+				
+				ag.setData(rs.getString("data"));
+				ag.setHora(rs.getString("hora"));
+				ag.setEstado(rs.getString("estado"));
+				ag.setCidade(rs.getString("cidade"));
+				ag.setUbs(rs.getString("ubs"));
+				ag.setEspecialidade(rs.getString("medico"));
+				ag.setMedico(rs.getString("especialidade"));
+				
+				// adicionando o objeto à lista
+				agendados.add(ag);
+			}
+			rs.close();
+			ps.close();
+			return agendados;
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		}
+
 	}
 	
 	public void salvarExame(AgendaExame agendaExame) {

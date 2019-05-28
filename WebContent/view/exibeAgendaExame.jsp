@@ -219,7 +219,7 @@
 
 
 
-	<form class="vtr" action="ExamesController?action=irConsultaExame"
+	<form class="vtr" action="ExamesController?action=consultar_exames"
 		method="get">
 
 		<table border=5>

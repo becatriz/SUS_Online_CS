@@ -1,6 +1,9 @@
 package br.com.sus_online.controller;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -41,13 +44,12 @@ public class ConsultasController extends HttpServlet {
 		if (action == null) {
 			throw new ServletException("No action specified.");
 		} else if (action.equals("consulta_agenda")) {
+			String dt1 = request.getParameter("dataIni");
 			irParaAgenda(request, response);
 		} else if (action.equals("agendar_consulta")) {
 			irAgendarConsulta(request, response);
-		} 
+		}
 	}
-
-
 
 	// Metodo para agendar Consulta
 	private void irAgendarConsulta(HttpServletRequest request, HttpServletResponse response) {
@@ -68,9 +70,28 @@ public class ConsultasController extends HttpServlet {
 
 		try {
 			HttpSession sessao = request.getSession();
-			Autentica_Usuario usu = (Autentica_Usuario) sessao.getAttribute("user");
 
-			List<AgendaConsulta> agenda = daoConsultaExame.getLista(usu.getId());
+			String dataIni = request.getParameter("dataIni");
+			String dataFim = request.getParameter("dataIni");
+			Date dataInicio = null; 
+			Date dataFinal = null;
+			if (dataIni != null && !dataIni.isEmpty()) {
+				SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+				dataInicio = formato.parse("dataIni");
+			}
+			if (dataFim != null && !dataFim.isEmpty()) {
+				SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+				dataFinal = formato.parse("dataFim");
+			}
+
+			Autentica_Usuario usu = (Autentica_Usuario) sessao.getAttribute("user");
+			List<AgendaConsulta> agenda = new ArrayList<AgendaConsulta>();
+			if (dataInicio == null && dataFinal == null) {
+				agenda = daoConsultaExame.getLista(usu.getId());
+			}
+			else if (dataInicio != null && dataFinal != null) {
+				agenda = daoConsultaExame.getListaPeriodo(usu.getId(), dataInicio, dataFinal);
+			}
 
 			if (agenda.size() > 0) {
 				request.setAttribute("listaAgenda", agenda);
@@ -103,6 +124,15 @@ public class ConsultasController extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		
+		String action = request.getParameter("action");
+
+		if (action == null) {
+			throw new ServletException("No action specified.");
+		} else if (action.equals("consulta_agenda")) {
+			String dt1 = request.getParameter("dataIni");
+			irParaAgenda(request, response);
+		}
 
 		HttpSession sessao = request.getSession();
 		Autentica_Usuario usu = (Autentica_Usuario) sessao.getAttribute("user");
