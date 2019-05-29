@@ -23,6 +23,8 @@
 		</c:when>
 		<c:otherwise>
 			<h1> ${ mensagem }</h1>
+			<a class="navbar-brand" href="InicialController?action=Login.do">Voltar</a>
+			
 		</c:otherwise>
 
 	</c:choose>

@@ -40,7 +40,7 @@
 				href="ConsultasController?action=consulta_agenda" role="button">Consultas Agendadas</a> 
 				<a style="margin-right: 5px;"
 				class="btn btn-sm btn-success active navbar-right offset"
-				href="ExamesController?action=consultar_exames" role="button">Exames Agendadoss</a>
+				href="ExamesController?action=consultar_exames" role="button">Exames Agendados</a>
 				<a style="margin-right: 5px;"
 				class="btn btn-sm btn-success active navbar-right offset"
 				href="ConsultasController?action=agendar_consulta" role="button">Agendar

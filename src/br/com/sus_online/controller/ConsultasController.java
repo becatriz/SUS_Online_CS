@@ -73,15 +73,15 @@ public class ConsultasController extends HttpServlet {
 
 			String dataIni = request.getParameter("dataIni");
 			String dataFim = request.getParameter("dataIni");
-			Date dataInicio = null; 
-			Date dataFinal = null;
+			String dataInicio = null; 
+			String dataFinal = null;
 			if (dataIni != null && !dataIni.isEmpty()) {
-				SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
-				dataInicio = formato.parse("dataIni");
+				//SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+				dataInicio = dataIni;
 			}
 			if (dataFim != null && !dataFim.isEmpty()) {
 				SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
-				dataFinal = formato.parse("dataFim");
+				dataFinal = dataFim;
 			}
 
 			Autentica_Usuario usu = (Autentica_Usuario) sessao.getAttribute("user");
@@ -90,7 +90,7 @@ public class ConsultasController extends HttpServlet {
 				agenda = daoConsultaExame.getLista(usu.getId());
 			}
 			else if (dataInicio != null && dataFinal != null) {
-				agenda = daoConsultaExame.getListaPeriodo(usu.getId(), dataInicio, dataFinal);
+				agenda = daoConsultaExame.getListaPeriodoConsulta(usu.getId(), dataInicio, dataFinal);
 			}
 
 			if (agenda.size() > 0) {
@@ -101,6 +101,8 @@ public class ConsultasController extends HttpServlet {
 			}
 
 			request.getRequestDispatcher("view/exibeAgendaConsulta.jsp").forward(request, response);
+			//request.getRequestDispatcher("view/teste.jsp").forward(request, response);
+			
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -125,24 +127,17 @@ public class ConsultasController extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		
+		
+		HttpSession sessao = request.getSession();
+		Autentica_Usuario usu = (Autentica_Usuario) sessao.getAttribute("user");
+	
+		
 		String action = request.getParameter("action");
 
-		if (action == null) {
-			throw new ServletException("No action specified.");
-		} else if (action.equals("consulta_agenda")) {
+		if (action != null && action.equals("consulta_agenda")) {
 			String dt1 = request.getParameter("dataIni");
 			irParaAgenda(request, response);
 		}
-
-		HttpSession sessao = request.getSession();
-		Autentica_Usuario usu = (Autentica_Usuario) sessao.getAttribute("user");
-		/*
-		 * Autentica_Usuario user = null; try { DaoUsuario dao = new DaoUsuario();//
-		 * Cria uma instancia do DAO usuario user = dao.findByUser(usu.getUsuario()); }
-		 * catch (Exception e) {
-		 * 
-		 * }
-		 */
 
 		String data = request.getParameter("data");
 		String hora = request.getParameter("hora");

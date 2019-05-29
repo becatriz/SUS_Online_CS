@@ -82,7 +82,7 @@ p>input {
 	<div class="container">
 		<h2>Agendar Consultas</h2>
 		<hr>
-		<hr>
+		
 		<div id="divMensagem"><h4 id="mensagem" style="color:red;">${mensagem}</h4></div>
 		<form class="form-horizontal" id="form" action="agendarConsulta" method="post">
 			
@@ -202,6 +202,23 @@ function validar(){
 	var medico = document.getElementById('medico').value;
 	var data = document.getElementById('calendario').value;
 	var hora = document.getElementById('inputHora').value;
+
+	
+	
+	
+	var strData = data;
+	var partesData = strData.split("/");
+	var data = new Date(partesData[2], partesData[1] - 1, partesData[0]);
+	data.setHours(23, 59, 59);
+	if(data < new Date(Date.now())){
+		document.getElementById('mensagem').textContent = "A data da consulta não pode ser anterior à data atual.";
+		ocultar();
+		return false;
+	}
+	
+
+	
+	
 	if (data == "null" || hora == "null" || cidade == "null" || estado== "null"
 		|| ubs== "null" || especialidade== "null" ||medico== "null"){
 		document.getElementById('mensagem').textContent = "Todos os campos devem estar preenchidos.";

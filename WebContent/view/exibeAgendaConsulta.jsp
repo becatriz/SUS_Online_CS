@@ -53,24 +53,24 @@
 <!-- JavaScript para Calendario da escolha da Data de Agendamento -->
 
 <style>
-.vtr {
-	margin-left: 320px;
-	margin-top: -250px;
-}
+/* .vtr { */
+/* 	margin-left: 320px; */
+/* 	margin-top: -250px; */
+/* } */
+	
+/* #calendario1 { */
+/* 	margin-left: 100px; */
+/* 	margin-top: -320px; */
+/* } */
 
-#calendario1 {
-	margin-left: 100px;
-	margin-top: -320px;
-}
+/* #calendario { */
+/* 	margin-left: 100px; */
+/* 	margin-top: -320px; */
+/* } */
 
-#calendario {
-	margin-left: 100px;
-	margin-top: -320px;
-}
-
-#botaoBuscarAgenda {
-	margin-top: 110px;
-}
+/* #botaoBuscarAgenda { */
+/* 	margin-top: 110px; */
+/* } */
 </style>
 
 
@@ -80,12 +80,46 @@
 		height=280px alt="" />
 	<a class="navbar-brand" href="InicialController?action=Login.do">Voltar</a>
 	<!-- container -->
-	<div class="">
+	<div class="" col-sm-24>
 
-		<h1>
+		<h1 align="center">
 			<span>Consultas</span>
 		</h1>
-		<h3></h3>
+		<hr>
+		<div id="divMensagem">
+		<h4 id="mensagem" style="color: red;">${mensagem}</h4>
+		</div>
+		
+		
+		
+		<div  >
+			<form action="ConsultasController?action=consulta_agenda" method="post" >
+
+			<div class="form-group" align="center">
+				
+	
+				<div class="col-sm-2" align="center">
+					<input type="text" class="form-control" id="calendario1"
+						placeholder="Data Inicial" name="dataIni">
+	
+				</div>
+	
+				<div class="col-sm-2">
+					<input type="text" class="form-control" id="calendario"
+						placeholder="Data Final" name="dataFim">
+				</div>
+			</div>
+
+			
+			<button type="submit" value="buscarAgenda" class="btn btn-default"
+				id="botaoBuscarAgenda" onclick="return validar()">Buscar</button>
+
+			</form>
+		</div>
+		
+		
+		
+		
 		<hr>
 
 		<div class="row">
@@ -94,16 +128,7 @@
 				<div id="my-calendar"></div>
 
 				<script type="application/javascript">
-					
-					
-					
-					
-					
-					
-					
-					
-					
-					
+								
                 $(document).ready(function () {
                     $("#my-calendar").zabuto_calendar({
                     	language: "pt",
@@ -118,32 +143,28 @@
                     });
                 });
             	
-			
 				
                 $(function() {
             		$("#calendario").datepicker(
-            				{
-            					dateFormat : 'dd/mm/yy',
-            					dayNames : [ 'Domingo', 'Segunda', 'Terça', 'Quarta',
-            							'Quinta', 'Sexta', 'Sábado', 'Domingo' ],
-            					dayNamesMin : [ 'D', 'S', 'T', 'Q', 'Q', 'S', 'S', 'D' ],
-            					dayNamesShort : [ 'Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex',
-            							'Sáb', 'Dom' ],
-            					monthNames : [ 'Janeiro', 'Fevereiro', 'Março', 'Abril',
-            							'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro',
-            							'Outubro', 'Novembro', 'Dezembro' ],
-            					monthNamesShort : [ 'Jan', 'Fev', 'Mar', 'Abr', 'Mai',
-            							'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez' ],
-            					changeMonth : true,
-            					changeYear : true,
-            					showOtherMonths : true,
-            					selectOtherMonths : true,
-
-            				});
+            		{
+            				dateFormat : 'dd/mm/yy',
+            				dayNames : [ 'Domingo', 'Segunda', 'Terça', 'Quarta',
+            						'Quinta', 'Sexta', 'Sábado', 'Domingo' ],
+            				dayNamesMin : [ 'D', 'S', 'T', 'Q', 'Q', 'S', 'S', 'D' ],
+            				dayNamesShort : [ 'Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex',
+            						'Sáb', 'Dom' ],
+            				monthNames : [ 'Janeiro', 'Fevereiro', 'Março', 'Abril',
+            						'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro',
+            						'Outubro', 'Novembro', 'Dezembro' ],
+            				monthNamesShort : [ 'Jan', 'Fev', 'Mar', 'Abr', 'Mai',
+            						'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez' ],
+            				changeMonth : true,
+            				changeYear : true,
+            				showOtherMonths : true,
+            				selectOtherMonths : true,
+            		});
             	});
-				
-				
-        		
+
                 $(document).ready(function () {
                     $("#my-calendar").zabuto_calendar({
                     	language: "pt",
@@ -157,102 +178,88 @@
                         }
                     });
                 });
-            	
-			
+
 				
                 $(function() {
             		$("#calendario1").datepicker(
-            				{
-            					dateFormat : 'dd/mm/yy',
-            					dayNames : [ 'Domingo', 'Segunda', 'Terça', 'Quarta',
-            							'Quinta', 'Sexta', 'Sábado', 'Domingo' ],
-            					dayNamesMin : [ 'D', 'S', 'T', 'Q', 'Q', 'S', 'S', 'D' ],
-            					dayNamesShort : [ 'Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex',
-            							'Sáb', 'Dom' ],
-            					monthNames : [ 'Janeiro', 'Fevereiro', 'Março', 'Abril',
-            							'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro',
-            							'Outubro', 'Novembro', 'Dezembro' ],
-            					monthNamesShort : [ 'Jan', 'Fev', 'Mar', 'Abr', 'Mai',
-            							'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez' ],
-            					changeMonth : true,
-            					changeYear : true,
-            					showOtherMonths : true,
-            					selectOtherMonths : true,
+            			{
+            				dateFormat : 'dd/mm/yy',
+            				dayNames : [ 'Domingo', 'Segunda', 'Terça', 'Quarta',
+            					'Quinta', 'Sexta', 'Sábado', 'Domingo' ],
+            				dayNamesMin : [ 'D', 'S', 'T', 'Q', 'Q', 'S', 'S', 'D' ],
+            				dayNamesShort : [ 'Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex',
+            					'Sáb', 'Dom' ],
+            				monthNames : [ 'Janeiro', 'Fevereiro', 'Março', 'Abril',
+            					'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro',
+            					'Outubro', 'Novembro', 'Dezembro' ],
+            				monthNamesShort : [ 'Jan', 'Fev', 'Mar', 'Abr', 'Mai',
+            						'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez' ],
+            				changeMonth : true,
+            				changeYear : true,
+            				showOtherMonths : true,
+            				selectOtherMonths : true,
 
-            				});
-            	});
-				
-				
-				
-				
-				
-				
-				
-				
+            			});
+            	});	
 				</script>
-
 			</div>
-		</div>
-
-
+			<div class="col-xs-8">
+				<table border=5 class="table">
+					<thead>
+						<tr >
+							<th>Data</th>
+							<th>Hora</th>
+							<th>Posto</th>
+							<th>Medico</th>
+							<th>Especialidade</th>
+						</tr>
+					</thead>
+					<tbody>
+						<c:forEach var="linha" items="${listaAgenda}">
+							<tr>
+								<td>${linha.data}</td>
+								<td>${linha.hora}</td>
+								<td>${linha.ubs}</td>
+								<td>${linha.medico}</td>
+								<td>${linha.especialidade}</td>
+							</tr>
+						</c:forEach>
+					</tbody>
+				</table>
+			</div>
+		</div>/
 	</div>
 
 
+	<script type="text/javascript">
+		function ocultar() {
+			if (document.getElementById('mensagem').textContent.length == 0) {
+				document.getElementById('divMensagem').style.display = 'none';
+			} else
+				document.getElementById('divMensagem').style.display = 'block';
+		}
 
-
-
-
-	<form class="vtr" action="ConsultasController?action=irConsultaExame"
-		method="get">
-
-		<div class="form-group">
-			<label class="control-label col-sm-2" for="data"></label>
-
-			<div class="col-sm-2">
-				<input type="text" class="form-control" id="calendario1"
-					placeholder="Data Inicial" name="dataIni">
-
-			</div>
-
-			<div class="col-sm-2">
-				<input type="text" class="form-control" id="calendario"
-					placeholder="Data Final" name="dataFim">
-
-			</div>
-
-
-		</div>
-
-		<br />
-		<button type="submit" value="buscarAgenda" class="btn btn-default"
-			id="botaoBuscarAgenda">Buscar</button>
-
-	</form>
-
-	<table border=5>
-		<tr>
-			<th>Data</th>
-			<th>Hora</th>
-			<th>Posto</th>
-			<th>Medico</th>
-			<th>Especialidade</th>
-
-		</tr>
-		<c:forEach var="linha" items="${listaAgenda}">
-			<tr>
-				<td>${linha.data}</td>
-				<td>${linha.hora}</td>
-				<td>${linha.ubs}</td>
-				<td>${linha.medico}</td>
-				<td>${linha.especialidade}</td>
-
-
-
-			</tr>
-		</c:forEach>
-	</table>
-
-
+		function validar() {
+			var dataIni = document.getElementById('calendario1').value;
+			var dataFim = document.getElementById('calendario').value;
+			if (dataIni != null){
+				var data = new Date(dataIni.split('/')[2],dataIni.split('/')[1],dataIni.split('/')[0]);
+				if (data < Date.now){
+					document.getElementById('mensagem').textContent = "Para buscar por período, preencha ambas as datas.";
+					ocultar();
+					return false;
+				}
+			}
+			if ((dataIni != "" && dataFim == "")
+				|| (dataIni == "" && dataFim != "")) {
+				document.getElementById('mensagem').textContent = "Para buscar por período, preencha ambas as datas.";
+				ocultar();
+				return false;
+			} else {
+				document.getElementById("form").submit();
+			}
+		}
+	</script>
 
 
 	<!-- /container -->

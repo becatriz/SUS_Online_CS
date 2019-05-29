@@ -1,8 +1,8 @@
 package br.com.sus_online.controller;
 
-
-
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -19,8 +19,6 @@ import br.com.sus_online.model.Autentica_Usuario;
 import br.com.sus_onlineDao.*;
 import br.com.sus_onlineDao.model.*;
 
-
-
 /**
  * Servlet implementation class ExamesController
  */
@@ -31,18 +29,17 @@ import br.com.sus_onlineDao.model.*;
 @WebServlet("/ExamesController")
 public class ExamesController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	
-	
+
 	private DaoConsultaseExames daoConExame = new DaoConsultaseExames();
 	DaoConsultaseExames dao = new DaoConsultaseExames();
-	
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public ExamesController() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
+
+	/**
+	 * @see HttpServlet#HttpServlet()
+	 */
+	public ExamesController() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
 
 	private void processarExames(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
@@ -55,16 +52,36 @@ public class ExamesController extends HttpServlet {
 			irConsultaExame(request, response);
 		} else if (action.equals("agendar_exames")) {
 			irAgendarExame(request, response);
-		};
-		
+		}
+		;
+
 	}
-    
+
 	private void irConsultaExame(HttpServletRequest request, HttpServletResponse response) {
 		try {
 			HttpSession sessao = request.getSession();
-			Autentica_Usuario usu = (Autentica_Usuario) sessao.getAttribute("user");
 
-			List<AgendaExame> agenda = daoConExame.getListaExame(usu.getId());
+			String dataIni = request.getParameter("dataIni");
+			String dataFim = request.getParameter("dataIni");
+			String dataInicio = null;
+			String dataFinal = null;
+			if (dataIni != null && !dataIni.isEmpty()) {
+				// SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+				dataInicio = dataIni;
+			}
+			
+			if (dataFim != null && !dataFim.isEmpty()) {
+				SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+				dataFinal = dataFim;
+			}
+			Autentica_Usuario usu = (Autentica_Usuario) sessao.getAttribute("user");
+			List<AgendaExame> agenda = new ArrayList<AgendaExame>();
+			if (dataInicio == null && dataFinal == null) {
+				agenda = daoConExame.getListaExame(usu.getId());
+			}
+			else if (dataInicio != null && dataFinal != null) {
+				agenda = daoConExame.getListaPeriodoExame(usu.getId(), dataInicio, dataFinal);
+			}
 
 			if (agenda.size() > 0) {
 				request.setAttribute("listaAgendaExame", agenda);
@@ -78,7 +95,7 @@ public class ExamesController extends HttpServlet {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
+
 	}
 
 	private void irAgendarExame(HttpServletRequest request, HttpServletResponse response) {
@@ -90,45 +107,49 @@ public class ExamesController extends HttpServlet {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
+
 	}
 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		processarExames(request, response);
-		
+
 	}
-	
 
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 
-
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-			//Pega a sessão
+		// Pega a sessão
 		HttpSession sessao = request.getSession();
 		Autentica_Usuario usu = (Autentica_Usuario) sessao.getAttribute("user");
-		
-		
+
+		String action = request.getParameter("action");
+
+		if (action != null && action.equals("consultar_exames")) {
+			String dt1 = request.getParameter("dataIni");
+			irConsultaExame(request, response);
+		}
+
 		String data = request.getParameter("data");
 		String hora = request.getParameter("hora");
 		String estado = request.getParameter("estado");
 		String cidade = request.getParameter("cidade");
 		String exame = request.getParameter("exame");
 		String ubs = request.getParameter("ubs");
-		
-		
-		if (data.equals("null") || hora.equals("null") || estado.equals("null") || cidade.equals("null") ||
-				ubs.equals("null") || exame.equals("null")) {
-				String msg = "Todos os campos devem estar preenchidos.";
-				request.setAttribute("mensagem", msg);
-				request.getRequestDispatcher("view/agendarExame.jsp").forward(request, response);
-			}
-			
+
+		if (data.equals("null") || hora.equals("null") || estado.equals("null") || cidade.equals("null")
+				|| ubs.equals("null") || exame.equals("null")) {
+			String msg = "Todos os campos devem estar preenchidos.";
+			request.setAttribute("mensagem", msg);
+			request.getRequestDispatcher("view/agendarExame.jsp").forward(request, response);
+		}
+
 		AgendaExame agendaExame = new AgendaExame();
-		
-		
+
 		agendaExame.setData(data);
 		agendaExame.setHora(hora);
 		agendaExame.setEstado(estado);
@@ -137,13 +158,11 @@ public class ExamesController extends HttpServlet {
 		agendaExame.setUbs(ubs);
 		agendaExame.setIdUsuario(usu.getId());
 		agendaExame.setNome(usu.getNome());
-		
+
 		try {
 
-			
 			List<AgendaExame> agendaMarcada = daoConExame.getListaExame(usu.getId());
-			
-			
+
 			boolean agendar = true;
 			for (AgendaExame ag : agendaMarcada) {
 				String d1 = agendaExame.getData();
@@ -160,8 +179,7 @@ public class ExamesController extends HttpServlet {
 				daoConExame.salvarExame(agendaExame);
 				request.setAttribute("mensagem", "Salvo");
 				request.getRequestDispatcher("view/sucessoAgendamento.jsp").forward(request, response);
-			}
-			else {
+			} else {
 				String msg = "Já existe uma consulta no mesmo dia e horário.";
 				request.setAttribute("mensagem", msg);
 				request.getRequestDispatcher("view/falhaAgendamento.jsp").forward(request, response);
@@ -172,8 +190,5 @@ public class ExamesController extends HttpServlet {
 		}
 
 	}
-		
-		
-	
 
 }
