@@ -11,6 +11,7 @@ import java.util.List;
 
 import br.com.sus_online.model.AgendaConsulta;
 import br.com.sus_online.model.AgendaExame;
+import br.com.sus_online.model.EstadosCidades;
 
 public class DaoConsultaseExames {
 
@@ -27,6 +28,168 @@ public class DaoConsultaseExames {
 		}
 		return connection;
 	}
+	
+	//Aqui será pego informações para apresentar nos labels as informações que estao no 
+	//banco de dados
+	
+	public List<EstadosCidades> getListaEstados(){
+		
+		try {
+			//Primeiro a conexao
+			Connection c = this.getConnection();
+			//Depois o PreparedStatement
+			PreparedStatement  ps =null;
+			//ResultSet
+			ResultSet rs = null;
+			
+			
+			//Recebe a Consulta
+			
+			ps = c.prepareStatement("select * from estado");
+		
+		
+			//Executa a consulta
+			rs = ps.executeQuery();
+			
+			List<EstadosCidades> listaEstados = new ArrayList<EstadosCidades>();
+			
+			while(rs.next()) {
+				//Cria  objeto Estados
+				EstadosCidades listEs = new EstadosCidades();
+				
+				listEs.setNomeEstado(rs.getString("nomeestado"));
+				
+				
+				
+				//add objeto a lista
+				listaEstados.add(listEs);
+				
+				
+			}
+			rs.close();
+			ps.close();
+			return listaEstados;
+			
+			
+			
+		}catch (SQLException e) {
+			throw new RuntimeException(e);
+			
+		}
+	}
+	
+	
+	
+	
+	
+	
+	public List<EstadosCidades> getListaCidades(){
+		
+		try {
+			//Primeiro a conexao
+			Connection c = this.getConnection();
+			//Depois o PreparedStatement
+			PreparedStatement  ps =null;
+			//ResultSet
+			ResultSet rs = null;
+			
+			
+			//Recebe a Consulta
+			
+			ps = c.prepareStatement("select * from cidade");
+	
+			
+			
+			//Executa a consulta
+			rs = ps.executeQuery();
+			
+			List<EstadosCidades> listaCidade = new ArrayList<EstadosCidades>();
+			
+			while(rs.next()) {
+				//Cria  objeto Estados
+				EstadosCidades listCd = new EstadosCidades();
+				
+				listCd.setNomeCidade(rs.getString("nomecidade"));
+				
+				
+				//add objeto a lista
+				listaCidade.add(listCd);
+				
+				
+			}
+			rs.close();
+			ps.close();
+			return listaCidade;
+			
+			
+			
+		}catch (SQLException e) {
+			throw new RuntimeException(e);
+			
+		}
+	}
+	
+	
+	
+public List<EstadosCidades> getListaPME(){
+		
+		try {
+			//Primeiro a conexao
+			Connection c = this.getConnection();
+			//Depois o PreparedStatement
+			PreparedStatement  ps =null;
+			//ResultSet
+			ResultSet rs = null;
+			
+			
+			//Recebe a Consulta
+			
+			ps = c.prepareStatement("select * from pme");
+	
+			
+			
+			//Executa a consulta
+			rs = ps.executeQuery();
+			
+			List<EstadosCidades> listaCidade = new ArrayList<EstadosCidades>();
+			
+			while(rs.next()) {
+				//Cria  objeto Estados
+				EstadosCidades listCd = new EstadosCidades();
+				
+				listCd.setNomeCidade(rs.getString("nomecidade"));
+				
+				
+				//add objeto a lista
+				listaCidade.add(listCd);
+				
+				
+			}
+			rs.close();
+			ps.close();
+			return listaCidade;
+			
+			
+			
+		}catch (SQLException e) {
+			throw new RuntimeException(e);
+			
+		}
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 
 	public void salvarConsulta(AgendaConsulta agenda) {
 
@@ -103,7 +266,7 @@ public class DaoConsultaseExames {
 			ResultSet rs = null;
 
 			ps = c.prepareStatement(
-					"select data, hora, estado, cidade, ubs, medico, especialidade from consultas_agendadas where id_usuario = ? and data between ? and ?");
+					"select data, hora, estado, cidade, ubs, medico, especialidade from consultas_agendadas where id_usuario = ? and cast(data as Date) between cast(? as Date) and cast(? as Date)");
 			ps.setInt(1, id_usuario);
 			ps.setString(2, dataIni);
 			ps.setString(3, dataFim);
@@ -208,7 +371,7 @@ public class DaoConsultaseExames {
 			ResultSet rs = null;
 
 			ps = c.prepareStatement(
-					"select data, hora, estado, cidade, ubs, exame from exames_agendados where id_usuario = ? and data between ? and ?");
+					"select data, hora, estado, cidade, ubs, exame from exames_agendados where id_usuario = ? and cast(data as Date) between cast(? as Date) and cast(? as Date) order by cast(data as Date)");
 			ps.setInt(1, id_usuario);
 			ps.setString(2, dataIni);
 			ps.setString(3, dataFim);
@@ -224,6 +387,7 @@ public class DaoConsultaseExames {
 				ag.setHora(rs.getString("hora"));
 				ag.setEstado(rs.getString("estado"));
 				ag.setCidade(rs.getString("cidade"));
+				ag.setCidade(rs.getString("ubs"));
 				ag.setUbs(rs.getString("exame"));
 
 				// adicionando o objeto à lista

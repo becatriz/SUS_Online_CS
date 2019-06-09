@@ -26,89 +26,84 @@
 		height=280px alt="" />
 
 
+	<div class="row">
+		<a class="navbar-brand"
+			href="InicialController?action=home_barra_superior">Home</a> <a
+			style="margin-right: 5px;" class="navbar-brand"
+			href="InicialController?action=iniciar_login_conta" role="button">Sair</a>
+		<a class="navbar-brand" href="InicialController?action=Login.do">Voltar</a>
 
-
-	<div class="navbar">
-		<div class="row">
-			<a class="navbar-brand"
-				href="InicialController?action=home_barra_superior">Home</a> <a
-				style="margin-right: 5px;" class="navbar-brand"
-				href="InicialController?action=iniciar_login_conta" role="button">Sair</a>
-			<a class="navbar-brand" href="InicialController?action=Login.do">Voltar</a>
-
-		</div>
 	</div>
+
 	<h1>Histórico de Consultas e Exames</h1>
 
 	<form class="vt" action="InicialController?action=irParaPerfilUsuario"
 		method="get">
+
+
 		<h4>Exames</h4>
-		<table border=5>
-			<tr>
 
-				<th>Data</th>
-				<th>Hora</th>
-				<th>Estado</th>
-				<th>Cidade</th>
-				<th>Posto</th>
-				<th>Exame</th>
-
-
-
-			</tr>
-			<c:forEach var="linha" items="${listaAgenda}">
-				<tr>
-
-					<td>${linha.data}</td>
-					<td>${linha.hora}</td>
-					<td>${linha.estado}</td>
-					<td>${linha.cidade}</td>
-					<td>${linha.ubs}</td>
-					<td>${linha.exame}</td>
-
-
-
-
-
-				</tr>
-			</c:forEach>
-
-		</table>
+		<div class="col-xs-8">
+			<table border=5 class=table>
+				<thead>
+					<tr>
+						<th>Data</th>
+						<th>Hora</th>
+						<th>Estado</th>
+						<th>Cidade</th>
+						<th>Posto</th>
+						<th>Exame</th>
+					</tr>
+				</thead>
+				<tbody>
+					<c:forEach var="linha" items="${listaAgenda}">
+						<tr>
+							<td>${linha.data}</td>
+							<td>${linha.hora}</td>
+							<td>${linha.estado}</td>
+							<td>${linha.cidade}</td>
+							<td>${linha.ubs}</td>
+							<td>${linha.exame}</td>
+						</tr>
+						<tbody>
+					</c:forEach>
+			</table>
+		</div>
 		<br>
 		<br>
-		<h4>Consultas</h4>
-		<table border=5>
-			<tr>
-
-				<th>Data</th>
-				<th>Hora</th>
-				<th>Estado</th>
-				<th>Cidade</th>
-				<th>Medico</th>
-				<th>Especialidade</th>
-
-
-
-			</tr>
-			<c:forEach var="linha" items="${listaAgendaExame}">
-				<tr>
-
-					<td>${linha.data}</td>
-					<td>${linha.hora}</td>
-					<td>${linha.estado}</td>
-					<td>${linha.cidade}</td>
-					<td>${linha.medico}</td>
-					<td>${linha.especialidade}</td>
-
-
-
-
-
-				</tr>
-			</c:forEach>
-		</table>
+		<br>
+		<div class="col-xs-8">
+			<h4>Consultas</h4>
+			<table border=5 class=table>
+				<thead>
+					<tr>
+						<th>Data</th>
+						<th>Hora</th>
+						<th>Estado</th>
+						<th>Cidade</th>
+						<th>Medico</th>
+						<th>Especialidade</th>
+					</tr>
+				</thead>
+				<tbody>
+					<c:forEach var="linha" items="${listaAgendaExame}">
+						<tr>
+							<td>${linha.data}</td>
+							<td>${linha.hora}</td>
+							<td>${linha.estado}</td>
+							<td>${linha.cidade}</td>
+							<td>${linha.medico}</td>
+							<td>${linha.especialidade}</td>
+						</tr>
+					</c:forEach>
+				</tbody>
+			</table>
+		</div>
 		<br />
 	</form>
-
-
+	<div class="navbar"></div>
+	<button type="button" onClick="window.print();">Imprimir</button>
 </body>
+</html>
+
+

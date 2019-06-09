@@ -20,10 +20,11 @@
 
 	<h1>Lista de Usuários do Sistema</h1>
 
-	<form class="vt" action="InicialController?action=irParaExibirUsuarios"
-		method="get">
-		
-		<table border=3>
+	<form class="vt" action="InicialController?action=exibir_usuarios"
+		method="post">
+		<div class="col-xs-8">
+		<table border=1 class=table>
+		<thead>
 			<tr>
 
 				<th>ID</th>
@@ -34,6 +35,8 @@
 
 
 			</tr>
+			</thead>
+			<tbody>
 			<c:forEach var="linha" items="${listaUsuarios}">
 				<tr>
 
@@ -47,8 +50,9 @@
 
 				</tr>
 			</c:forEach>
-
+			</tbody>
 		</table>
+		</div>
 	</form>
 
 </body>

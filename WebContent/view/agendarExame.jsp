@@ -83,13 +83,14 @@ p>input {
 		<div id="divMensagem">
 			<h4 id="mensagem" style="color: red;">${mensagem}</h4>
 		</div>
-		<form class="form-horizontal" id="form" action="agendarExames" method="post">
+		<form class="form-horizontal" id="form" action="agendarExames"
+			method="post">
 			<div class="form-group"></div>
 			<div class="form-group">
 				<label class="control-label col-sm-2">Estado</label>
 				<div class="col-sm-3">
-					<select name="estado" id="inputEstado" class="form-control">
-						<option selected>Selecionar</option>
+					<select onChange="Change('inputCidade')" name="estado" id="inputEstado" class="form-control">
+						<option value="null" selected>Selecionar</option>
 						<option>Mato Grosso do Sul</option>
 
 					</select>
@@ -99,9 +100,9 @@ p>input {
 			<div class="form-group">
 				<label class="control-label col-sm-2">Cidade</label>
 				<div class="col-sm-3">
-					<select required name="cidade" id="inputCidade"
+					<select onChange="Change('exame')" required name="cidade" id="inputCidade"
 						class="form-control">
-						<option selected>Selecionar</option>
+						<option value ="null"selected>Selecionar</option>
 						<option>Campo Grande</option>
 					</select>
 				</div>
@@ -110,8 +111,8 @@ p>input {
 			<div class="form-group">
 				<label class="control-label col-sm-2">Exame</label>
 				<div class="col-sm-3">
-					<select name="exame" class="form-control" id="exame">
-						<option selected>Selecionar</option>
+					<select onChange="Change('ubs')" name="exame" class="form-control" id="exame">
+						<option value="null "selected>Selecionar</option>
 						<option value="Tomografia ">Tomografia</option>
 						<option value="Radiologia">Radiologia</option>
 						<option value="Urina">Urina</option>
@@ -124,8 +125,8 @@ p>input {
 				<label class="control-label col-sm-2">UBS - Unidade Básica
 					de Saúde</label>
 				<div class="col-sm-3">
-					<select name="ubs" class="form-control" id="ubs">
-						<option selected>Selecionar</option>
+					<select  onChange="Change('calendario')" name="ubs" class="form-control" id="ubs">
+						<option value="null" selected>Selecionar</option>
 						<option value="Posto Nova Bahia ">Posto Nova Bahia</option>
 						<option value="Posto Coronel Antonino">Posto Coronel
 							Antonino</option>
@@ -139,7 +140,7 @@ p>input {
 				<label class="control-label col-sm-2" for="data">Data:</label>
 
 				<div class="col-sm-3">
-					<input type="text" class="form-control" id="calendario"
+					<input onChange="Change('inputHora')" type="text" class="form-control" id="calendario"
 						placeholder="Escolha uma data" name="data" required>
 				</div>
 
@@ -159,10 +160,11 @@ p>input {
 			</div>
 
 
-			
+
 			<div class="form-group">
 				<div class="col-sm-offset-2 col-sm-10">
-					<button type="button" id="salvarExame" value="salvarExame" onclick="return validar()" class="btn btn-default">Agendar</button>
+					<button type="button" id="salvarExame" value="salvarExame"
+						onclick="return validar()" class="btn btn-default">Agendar</button>
 				</div>
 			</div>
 		</form>
@@ -170,6 +172,18 @@ p>input {
 
 
 	<script type="text/javascript">
+	$(document).ready(function () {
+		document.getElementById('inputCidade').disabled = true;
+		document.getElementById('exame').disabled = true;
+		document.getElementById('ubs').disabled = true;
+		document.getElementById('calendario').disabled = true;
+		document.getElementById('inputHora').disabled = true;
+	});
+	
+	function Change(id){
+		document.getElementById(id).disabled = false;	
+	}
+	
 		function ocultar() {
 			if (document.getElementById('mensagem').textContent.length == 0) {
 				document.getElementById('divMensagem').style.display = 'none';
@@ -187,6 +201,16 @@ p>input {
 			var ubs = document.getElementById('ubs').value;
 			var data = document.getElementById('calendario').value;
 			var hora = document.getElementById('inputHora').value;
+
+			var strData = data;
+			var partesData = strData.split("/");
+			var data = new Date(partesData[2], partesData[1] - 1, partesData[0]);
+			data.setHours(23, 59, 59);
+			if (data < new Date(Date.now())) {
+				document.getElementById('mensagem').textContent = "A data da consulta não pode ser anterior à data atual.";
+				ocultar();
+				return false;
+			}
 
 			if (data == "null" || hora == "null" || estado == "null"
 					|| cidade == "null" || ubs == "null"

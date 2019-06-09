@@ -1,5 +1,7 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
+<?xml version="1.0" encoding="UTF-8" ?>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -49,12 +51,12 @@ p>input {
 		$("#calendario").datepicker(
 				{
 					dateFormat : 'dd/mm/yy',
-					dayNames : [ 'Domingo', 'Segunda', 'Terça', 'Quarta',
-							'Quinta', 'Sexta', 'Sábado', 'Domingo' ],
+					dayNames : [ 'Domingo', 'Segunda', 'TerÃ§a', 'Quarta',
+							'Quinta', 'Sexta', 'SÃ¡bado', 'Domingo' ],
 					dayNamesMin : [ 'D', 'S', 'T', 'Q', 'Q', 'S', 'S', 'D' ],
 					dayNamesShort : [ 'Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex',
-							'Sáb', 'Dom' ],
-					monthNames : [ 'Janeiro', 'Fevereiro', 'Março', 'Abril',
+							'SÃ¡b', 'Dom' ],
+					monthNames : [ 'Janeiro', 'Fevereiro', 'MarÃ§o', 'Abril',
 							'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro',
 							'Outubro', 'Novembro', 'Dezembro' ],
 					monthNamesShort : [ 'Jan', 'Fev', 'Mar', 'Abr', 'Mai',
@@ -90,10 +92,12 @@ p>input {
 			<div class="form-group">
 				<label class="control-label col-sm-2">Estado</label>
 				<div class="col-sm-3">
-					<select required name="estado" id="inputEstado"
+					<select onChange="Change('inputCidade')" name="estado" id="inputEstado"
 						class="form-control" required>
+						<c:forEach var="linha" items="${listaAgenda}">
+						<option selected value="${linha.nomeEstado}" >${linha.nomeEstado}</option>
+						</c:forEach>
 						<option selected value="null">Selecionar</option>
-						<option value="Mato Grosso do Sul">Mato Grosso do Sul</option>
 					</select>
 				</div>
 			</div>
@@ -102,18 +106,20 @@ p>input {
 			<div class="form-group">
 				<label class="control-label col-sm-2">Cidade</label>
 				<div class="col-sm-3">
-					<select name="cidade" id="inputCidade" class="form-control required">
-						<option selected value="null">Selecionar</option>
-						<option value="Campo Grande">Campo Grande</option>
+					<select onChange="Change('ubs')"  name="cidade" id="inputCidade" class="form-control required">
+						<c:forEach var="linha" items="${listaAgendaCidade}">
+						<option selected value="${linha.nomeCidade}" >${linha.nomeCidade}</option>
+						</c:forEach>
+						<option selected value="null">Selecionar</option>	
 
 					</select>
 				</div>
 			</div>
 			<div class="form-group">
-				<label class="control-label col-sm-2">UBS - Unidade Básica
-					de Saúde</label>
+				<label class="control-label col-sm-2">UBS - Unidade BÃ¡sica
+					de SaÃºde</label>
 				<div class="col-sm-3">
-					<select name="ubs" class="form-control" id="ubs" required>
+					<select onChange="Change('especialidade')" name="ubs" class="form-control" id="ubs" required>
 						<option selected value="null">Selecionar</option>
 						<option value="Posto Nova Bahia ">Posto Nova Bahia</option>
 						<option value="Posto Coronel Antonino">Posto Coronel
@@ -126,7 +132,7 @@ p>input {
 			<div class="form-group">
 				<label class="control-label col-sm-2">Especialidade</label>
 				<div class="col-sm-3">
-					<select name="especialidade" class="form-control"
+					<select onChange="Change('medico')" name="especialidade" class="form-control"
 						id="especialidade" required>
 						<option selected value="null">Selecionar</option>
 						<option value="Cardiologista ">Cardiologista</option>
@@ -138,9 +144,9 @@ p>input {
 			</div>
 
 			<div class="form-group">
-				<label class="control-label col-sm-2">Médico(a)</label>
+				<label class="control-label col-sm-2">MÃ©dico(a)</label>
 				<div class="col-sm-3">
-					<select name="medico" class="form-control" id="medico" required>
+					<select onChange="Change('calendario')" name="medico" class="form-control" id="medico" required>
 						<option value="null">Selecionar</option>
 						<option value="Dr Sandra ">Dr Sandra</option>
 						<option value="Dr Rebeca">Dr Rebeca</option>
@@ -155,7 +161,7 @@ p>input {
 				<label class="control-label col-sm-2" for="data">Data:</label>
 
 				<div class="col-sm-3">
-					<input type="text" class="form-control" id="calendario"
+					<input onChange="Change('inputHora')" type="text" class="form-control" id="calendario"
 						placeholder="Escolha uma data" name="data" required>
 				</div>
 
@@ -184,6 +190,20 @@ p>input {
 
 
 <script type="text/javascript">
+
+$(document).ready(function () {
+	document.getElementById('inputCidade').disabled = true;
+	document.getElementById('ubs').disabled = true;
+	document.getElementById('especialidade').disabled = true;
+	document.getElementById('medico').disabled = true;
+	document.getElementById('calendario').disabled = true;
+	document.getElementById('inputHora').disabled = true;
+});
+
+function Change(id){
+	document.getElementById(id).disabled = false;	
+}
+
 function ocultar(){
 	if (document.getElementById('mensagem').textContent.length == 0){
 		document.getElementById('divMensagem').style.display = 'none';
@@ -211,7 +231,7 @@ function validar(){
 	var data = new Date(partesData[2], partesData[1] - 1, partesData[0]);
 	data.setHours(23, 59, 59);
 	if(data < new Date(Date.now())){
-		document.getElementById('mensagem').textContent = "A data da consulta não pode ser anterior à data atual.";
+		document.getElementById('mensagem').textContent = "A data da consulta nÃ£o pode ser anterior Ã  data atual.";
 		ocultar();
 		return false;
 	}

@@ -2,7 +2,7 @@
     <wb-module deploy-name="sus_online">
         <wb-resource deploy-path="/" source-path="/WebContent" tag="defaultRootSource"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src"/>
-        <property name="context-root" value="sus_online"/>
         <property name="java-output-path" value="/sus_online/build/classes"/>
+        <property name="context-root" value="sus_onlineTeste"/>
     </wb-module>
 </project-modules>

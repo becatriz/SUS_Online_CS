@@ -62,7 +62,7 @@ public class ExamesController extends HttpServlet {
 			HttpSession sessao = request.getSession();
 
 			String dataIni = request.getParameter("dataIni");
-			String dataFim = request.getParameter("dataIni");
+			String dataFim = request.getParameter("dataFim");
 			String dataInicio = null;
 			String dataFinal = null;
 			if (dataIni != null && !dataIni.isEmpty()) {

@@ -16,6 +16,7 @@ import javax.servlet.http.HttpSession;
 
 import br.com.sus_online.model.AgendaConsulta;
 import br.com.sus_online.model.Autentica_Usuario;
+import br.com.sus_online.model.EstadosCidades;
 import br.com.sus_onlineDao.model.DaoConsultaseExames;
 
 /**
@@ -54,11 +55,43 @@ public class ConsultasController extends HttpServlet {
 	// Metodo para agendar Consulta
 	private void irAgendarConsulta(HttpServletRequest request, HttpServletResponse response) {
 
-		RequestDispatcher rd = null;
-		rd = request.getRequestDispatcher("view/agendarConsulta.jsp");
-
 		try {
-			rd.forward(request, response);
+
+			// Chamar Estados
+			List<EstadosCidades> nomeEstado = new ArrayList<EstadosCidades>();
+
+			if (nomeEstado.isEmpty()) {
+				nomeEstado = daoConsultaExame.getListaEstados();
+
+			}
+
+			// Chamar Cidades
+			List<EstadosCidades> nomeCidade = new ArrayList<EstadosCidades>();
+
+			if (nomeCidade.isEmpty()) {
+				nomeCidade = daoConsultaExame.getListaCidades();
+			}
+
+			// Lista Agenda Estado
+			if (nomeEstado.size() > 0) {
+				request.setAttribute("listaAgenda", nomeEstado);
+
+				request.setAttribute("temAgenda", true);
+			} else {
+				request.setAttribute("temAgenda", false);
+			}
+
+			// Lista Agenda Cidade
+			if (nomeCidade.size() > 0) {
+				request.setAttribute("listaAgendaCidade", nomeCidade);
+
+				request.setAttribute("temAgenda", true);
+			} else {
+				request.setAttribute("temAgenda", false);
+			}
+
+			request.getRequestDispatcher("view/agendarConsulta.jsp").forward(request, response);
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -72,11 +105,11 @@ public class ConsultasController extends HttpServlet {
 			HttpSession sessao = request.getSession();
 
 			String dataIni = request.getParameter("dataIni");
-			String dataFim = request.getParameter("dataIni");
-			String dataInicio = null; 
+			String dataFim = request.getParameter("dataFim");
+			String dataInicio = null;
 			String dataFinal = null;
 			if (dataIni != null && !dataIni.isEmpty()) {
-				//SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+				// SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
 				dataInicio = dataIni;
 			}
 			if (dataFim != null && !dataFim.isEmpty()) {
@@ -88,8 +121,7 @@ public class ConsultasController extends HttpServlet {
 			List<AgendaConsulta> agenda = new ArrayList<AgendaConsulta>();
 			if (dataInicio == null && dataFinal == null) {
 				agenda = daoConsultaExame.getLista(usu.getId());
-			}
-			else if (dataInicio != null && dataFinal != null) {
+			} else if (dataInicio != null && dataFinal != null) {
 				agenda = daoConsultaExame.getListaPeriodoConsulta(usu.getId(), dataInicio, dataFinal);
 			}
 
@@ -101,8 +133,6 @@ public class ConsultasController extends HttpServlet {
 			}
 
 			request.getRequestDispatcher("view/exibeAgendaConsulta.jsp").forward(request, response);
-			//request.getRequestDispatcher("view/teste.jsp").forward(request, response);
-			
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -126,19 +156,15 @@ public class ConsultasController extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		
-		
+
 		HttpSession sessao = request.getSession();
 		Autentica_Usuario usu = (Autentica_Usuario) sessao.getAttribute("user");
-	
-		
+
 		String action = request.getParameter("action");
 
 		if (action != null && action.equals("consulta_agenda")) {
-			String dt1 = request.getParameter("dataIni");
 			irParaAgenda(request, response);
 		}
-
 		String data = request.getParameter("data");
 		String hora = request.getParameter("hora");
 		String estado = request.getParameter("estado");

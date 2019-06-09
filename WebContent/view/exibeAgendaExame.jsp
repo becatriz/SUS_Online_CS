@@ -93,7 +93,7 @@
 
 
 		<div>
-			<form action="ExamesController?action=consultarExames" method="post">
+			<form action="ExamesController?action=consultar_exames" method="post">
 
 				<div class="form-group" align="center">
 
@@ -254,7 +254,22 @@
 		function validar() {
 			var dataIni = document.getElementById('calendario1').value;
 			var dataFim = document.getElementById('calendario').value;
-
+			if (dataIni != null){
+				var dataI = new Date(dataIni.split('/')[2],dataIni.split('/')[1],dataIni.split('/')[0]);
+// 				if (dataI < Date.now){
+// 					document.getElementById('mensagem').textContent = "Para buscar por período, preencha ambas as datas.";
+// 					ocultar();
+// 					return false;
+// 				}
+				if (dataFim != null){
+					var dataF = new Date(dataFim.split('/')[2],dataFim.split('/')[1],dataFim.split('/')[0]);
+					if (dataF < dataI){
+						document.getElementById('mensagem').textContent = "Data Final deve ser maior que a Data Inicial.";
+						ocultar();
+						return false;
+					}
+				}
+			}
 			if ((dataIni != "" && dataFim == "")
 					|| (dataIni == "" && dataFim != "")) {
 				document.getElementById('mensagem').textContent = "Para buscar por período, preencha ambas as datas.";
