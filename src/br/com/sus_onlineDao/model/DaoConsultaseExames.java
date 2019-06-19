@@ -12,7 +12,7 @@ import java.util.List;
 import br.com.sus_online.model.AgendaConsulta;
 import br.com.sus_online.model.AgendaExame;
 import br.com.sus_online.model.EstadosCidades;
-
+import br.com.sus_online.model.PostoEpecialidadeMedicoExame;
 public class DaoConsultaseExames {
 
 	public Connection getConnection() {
@@ -28,169 +28,250 @@ public class DaoConsultaseExames {
 		}
 		return connection;
 	}
-	
-	//Aqui será pego informações para apresentar nos labels as informações que estao no 
-	//banco de dados
-	
-	public List<EstadosCidades> getListaEstados(){
-		
+
+	// Aqui será pego informações para apresentar nos labels as informações que
+	// estao no
+	// banco de dados
+
+	public List<EstadosCidades> getListaEstados() {
+
 		try {
-			//Primeiro a conexao
+			// Primeiro a conexao
 			Connection c = this.getConnection();
-			//Depois o PreparedStatement
-			PreparedStatement  ps =null;
-			//ResultSet
+			// Depois o PreparedStatement
+			PreparedStatement ps = null;
+			// ResultSet
 			ResultSet rs = null;
-			
-			
-			//Recebe a Consulta
-			
+
+			// Recebe a Consulta
+
 			ps = c.prepareStatement("select * from estado");
-		
-		
-			//Executa a consulta
+
+			// Executa a consulta
 			rs = ps.executeQuery();
-			
+
 			List<EstadosCidades> listaEstados = new ArrayList<EstadosCidades>();
-			
-			while(rs.next()) {
-				//Cria  objeto Estados
+
+			while (rs.next()) {
+				// Cria objeto Estados
 				EstadosCidades listEs = new EstadosCidades();
-				
+
 				listEs.setNomeEstado(rs.getString("nomeestado"));
-				
-				
-				
-				//add objeto a lista
+
+				// add objeto a lista
 				listaEstados.add(listEs);
-				
-				
+
 			}
 			rs.close();
 			ps.close();
 			return listaEstados;
-			
-			
-			
-		}catch (SQLException e) {
-			throw new RuntimeException(e);
-			
-		}
-	}
-	
-	
-	
-	
-	
-	
-	public List<EstadosCidades> getListaCidades(){
-		
-		try {
-			//Primeiro a conexao
-			Connection c = this.getConnection();
-			//Depois o PreparedStatement
-			PreparedStatement  ps =null;
-			//ResultSet
-			ResultSet rs = null;
-			
-			
-			//Recebe a Consulta
-			
-			ps = c.prepareStatement("select * from cidade");
-	
-			
-			
-			//Executa a consulta
-			rs = ps.executeQuery();
-			
-			List<EstadosCidades> listaCidade = new ArrayList<EstadosCidades>();
-			
-			while(rs.next()) {
-				//Cria  objeto Estados
-				EstadosCidades listCd = new EstadosCidades();
-				
-				listCd.setNomeCidade(rs.getString("nomecidade"));
-				
-				
-				//add objeto a lista
-				listaCidade.add(listCd);
-				
-				
-			}
-			rs.close();
-			ps.close();
-			return listaCidade;
-			
-			
-			
-		}catch (SQLException e) {
-			throw new RuntimeException(e);
-			
-		}
-	}
-	
-	
-	
-public List<EstadosCidades> getListaPME(){
-		
-		try {
-			//Primeiro a conexao
-			Connection c = this.getConnection();
-			//Depois o PreparedStatement
-			PreparedStatement  ps =null;
-			//ResultSet
-			ResultSet rs = null;
-			
-			
-			//Recebe a Consulta
-			
-			ps = c.prepareStatement("select * from pme");
-	
-			
-			
-			//Executa a consulta
-			rs = ps.executeQuery();
-			
-			List<EstadosCidades> listaCidade = new ArrayList<EstadosCidades>();
-			
-			while(rs.next()) {
-				//Cria  objeto Estados
-				EstadosCidades listCd = new EstadosCidades();
-				
-				listCd.setNomeCidade(rs.getString("nomecidade"));
-				
-				
-				//add objeto a lista
-				listaCidade.add(listCd);
-				
-				
-			}
-			rs.close();
-			ps.close();
-			return listaCidade;
-			
-			
-			
-		}catch (SQLException e) {
-			throw new RuntimeException(e);
-			
-		}
-	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+
+		}
+	}
+
+	public List<EstadosCidades> getListaCidades() {
+
+		try {
+			// Primeiro a conexao
+			Connection c = this.getConnection();
+			// Depois o PreparedStatement
+			PreparedStatement ps = null;
+			// ResultSet
+			ResultSet rs = null;
+
+			// Recebe a Consulta
+
+			ps = c.prepareStatement("select * from cidade");
+
+			// Executa a consulta
+			rs = ps.executeQuery();
+
+			List<EstadosCidades> listaCidade = new ArrayList<EstadosCidades>();
+
+			while (rs.next()) {
+				// Cria objeto Estados
+				EstadosCidades listCd = new EstadosCidades();
+
+				listCd.setNomeCidade(rs.getString("nomecidade"));
+
+				// add objeto a lista
+				listaCidade.add(listCd);
+
+			}
+			rs.close();
+			ps.close();
+			return listaCidade;
+
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+
+		}
+	}
+
+	public List<PostoEpecialidadeMedicoExame> getListaPosto() {
+
+		try {
+			// Primeiro a conexao
+			Connection c = this.getConnection();
+			// Depois o PreparedStatement
+			PreparedStatement ps = null;
+			// ResultSet
+			ResultSet rs = null;
+
+			// Recebe a Consulta
+
+			ps = c.prepareStatement("select * from posto");
+
+			// Executa a consulta
+			rs = ps.executeQuery();
+
+			List<PostoEpecialidadeMedicoExame> listaposto = new ArrayList<PostoEpecialidadeMedicoExame>();
+
+			while (rs.next()) {
+				// Cria objeto Estados
+				PostoEpecialidadeMedicoExame listP = new PostoEpecialidadeMedicoExame();
+
+				listP.setNomePosto(rs.getString("nomeposto"));
+			
+
+				// add objeto a lista
+				listaposto.add(listP);
+
+			}
+			rs.close();
+			ps.close();
+			return listaposto;
+
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+
+		}
+	}
+	
+	public List<PostoEpecialidadeMedicoExame> getListaEspecialidade() {
+
+		try {
+			// Primeiro a conexao
+			Connection c = this.getConnection();
+			// Depois o PreparedStatement
+			PreparedStatement ps = null;
+			// ResultSet
+			ResultSet rs = null;
+
+			// Recebe a Consulta
+
+			ps = c.prepareStatement("select * from especialidade");
+
+			// Executa a consulta
+			rs = ps.executeQuery();
+
+			List<PostoEpecialidadeMedicoExame> listaEspecialidade = new ArrayList<PostoEpecialidadeMedicoExame>();
+
+			while (rs.next()) {
+				// Cria objeto Estados
+				PostoEpecialidadeMedicoExame listEsp = new PostoEpecialidadeMedicoExame();
+
+				listEsp.setNomeEspecialiade(rs.getString("especialidade"));
+			
+
+				// add objeto a lista
+				listaEspecialidade.add(listEsp);
+
+			}
+			rs.close();
+			ps.close();
+			return listaEspecialidade;
+
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+
+		}
+	}
+	
+	
+	
+	public List<PostoEpecialidadeMedicoExame> getListaMedico() {
+
+		try {
+			// Primeiro a conexao
+			Connection c = this.getConnection();
+			// Depois o PreparedStatement
+			PreparedStatement ps = null;
+			// ResultSet
+			ResultSet rs = null;
+
+			// Recebe a Consulta
+
+			ps = c.prepareStatement("select * from medico");
+
+			// Executa a consulta
+			rs = ps.executeQuery();
+
+			List<PostoEpecialidadeMedicoExame> listaMedico = new ArrayList<PostoEpecialidadeMedicoExame>();
+
+			while (rs.next()) {
+				// Cria objeto Estados
+				PostoEpecialidadeMedicoExame listaM = new PostoEpecialidadeMedicoExame();
+
+				listaM.setNomeMedico(rs.getString("nomemedico"));
+			
+
+				// add objeto a lista
+				listaMedico.add(listaM);
+
+			}
+			rs.close();
+			ps.close();
+			return listaMedico;
+
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+
+		}
+	}
+	public List<PostoEpecialidadeMedicoExame> getListaExame() {
+
+		try {
+			// Primeiro a conexao
+			Connection c = this.getConnection();
+			// Depois o PreparedStatement
+			PreparedStatement ps = null;
+			// ResultSet
+			ResultSet rs = null;
+
+			// Recebe a Consulta
+
+			ps = c.prepareStatement("select * from exame");
+
+			// Executa a consulta
+			rs = ps.executeQuery();
+
+			List<PostoEpecialidadeMedicoExame> listaExame = new ArrayList<PostoEpecialidadeMedicoExame>();
+
+			while (rs.next()) {
+				// Cria objeto Estados
+				PostoEpecialidadeMedicoExame listEx = new PostoEpecialidadeMedicoExame();
+
+				listEx.setNomeExame(rs.getString("nomeexame"));
+			
+
+				// add objeto a lista
+				listaExame.add(listEx);
+
+			}
+			rs.close();
+			ps.close();
+			return listaExame;
+
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+
+		}
+	}
+	
 	public void salvarConsulta(AgendaConsulta agenda) {
 
 		Connection con = this.getConnection();

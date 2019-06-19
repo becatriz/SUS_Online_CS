@@ -16,8 +16,12 @@ import javax.servlet.http.HttpSession;
 import br.com.sus_online.model.AgendaConsulta;
 import br.com.sus_online.model.AgendaExame;
 import br.com.sus_online.model.Autentica_Usuario;
+import br.com.sus_online.model.EstadosCidades;
+import br.com.sus_online.model.PostoEpecialidadeMedicoExame;
 import br.com.sus_onlineDao.*;
 import br.com.sus_onlineDao.model.*;
+
+import br.com.sus_onlineDao.model.DaoConsultaseExames;
 
 /**
  * Servlet implementation class ExamesController
@@ -53,7 +57,7 @@ public class ExamesController extends HttpServlet {
 		} else if (action.equals("agendar_exames")) {
 			irAgendarExame(request, response);
 		}
-		;
+		
 
 	}
 
@@ -99,15 +103,80 @@ public class ExamesController extends HttpServlet {
 	}
 
 	private void irAgendarExame(HttpServletRequest request, HttpServletResponse response) {
-		RequestDispatcher rd = null;
-		rd = request.getRequestDispatcher("view/agendarExame.jsp");
+		
 
 		try {
-			rd.forward(request, response);
+
+			// Chamar Estados
+			List<EstadosCidades> nomeEstado = new ArrayList<EstadosCidades>();
+
+			if (nomeEstado.isEmpty()) {
+				nomeEstado = daoConExame.getListaEstados();
+
+			}
+
+			// Chamar Cidades
+			List<EstadosCidades> nomeCidade = new ArrayList<EstadosCidades>();
+
+			if (nomeCidade.isEmpty()) {
+				nomeCidade = daoConExame.getListaCidades();
+			}
+			
+			//Lista Posto
+			List<PostoEpecialidadeMedicoExame> nomePostos = new ArrayList<PostoEpecialidadeMedicoExame>();
+			 if(nomePostos.isEmpty()) {
+				 nomePostos = daoConExame.getListaPosto();
+			 }
+			 
+			 
+			 //Lista Exame
+			 List<PostoEpecialidadeMedicoExame> nomeExame = new ArrayList<PostoEpecialidadeMedicoExame>();
+			 if(nomeExame.isEmpty()) {
+				 nomeExame = daoConExame.getListaExame();			 }
+		
+			 
+			 
+			 
+			// Lista Agenda Estado
+			if (nomeEstado.size() > 0) {
+				request.setAttribute("listaAgenda", nomeEstado);
+
+				request.setAttribute("temAgenda", true);
+			} else {
+				request.setAttribute("temAgenda", false);
+			}
+
+			// Lista Agenda Cidade
+			if (nomeCidade.size() > 0) {
+				request.setAttribute("listaAgendaCidade", nomeCidade);
+
+				request.setAttribute("temAgenda", true);
+			} else {
+				request.setAttribute("temAgenda", false);
+			}
+			
+			//Lista Agenda Posto
+			if(nomePostos.size() > 0) {
+				request.setAttribute("listaAgendaPosto", nomePostos);
+				request.setAttribute("temAgenda", true);
+			}else {
+				request.setAttribute("temAgenda", false);
+			}
+			
+			//Lista Agenda Exame
+			if(nomeExame.size() > 0) {
+				request.setAttribute("listaAgendaExame", nomeExame);
+				request.setAttribute("temAgenda", true);
+			}else {
+				request.setAttribute("temAgenda", false);
+			}
+			
+
+			request.getRequestDispatcher("view/agendarExame.jsp").forward(request, response);
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-
 	}
 
 	/**
@@ -123,7 +192,7 @@ public class ExamesController extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		// Pega a sessão
+		// Pega a sessï¿½o
 		HttpSession sessao = request.getSession();
 		Autentica_Usuario usu = (Autentica_Usuario) sessao.getAttribute("user");
 
@@ -180,7 +249,7 @@ public class ExamesController extends HttpServlet {
 				request.setAttribute("mensagem", "Salvo");
 				request.getRequestDispatcher("view/sucessoAgendamento.jsp").forward(request, response);
 			} else {
-				String msg = "Já existe uma consulta no mesmo dia e horário.";
+				String msg = "Jï¿½ existe uma consulta no mesmo dia e horï¿½rio.";
 				request.setAttribute("mensagem", msg);
 				request.getRequestDispatcher("view/falhaAgendamento.jsp").forward(request, response);
 			}

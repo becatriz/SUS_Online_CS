@@ -50,7 +50,19 @@
 				Exames</a>
 				<a style="margin-right: 5px;"
 				class="btn btn-sm btn-success active navbar-right offset"
-				href="InicialController?action=exibir_perfil" role="button">Exibir Perfil
+				href="VacinaMedicacao?action=vacina" role="button">Vacinas
+				</a>
+				<a style="margin-right: 5px;"
+				class="btn btn-sm btn-success active navbar-right offset"
+				href="VacinaMedicacao?action=medicacao" role="button">Medicações
+				</a>
+				<a style="margin-right: 5px;"
+				class="btn btn-sm btn-success active navbar-right offset"
+				href="VacinaMedicacao?action=prontuario" role="button">Prontuário
+				</a>
+				<a style="margin-right: 5px;"
+				class="btn btn-sm btn-success active navbar-right offset"
+				href="InicialController?action=exibir_perfil" role="button">Minha Agenda
 				</a>
 		</div>
 	</div>

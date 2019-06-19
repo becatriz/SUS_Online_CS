@@ -1,5 +1,7 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
+<?xml version="1.0" encoding="UTF-8" ?>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -49,12 +51,12 @@ p>input {
 		$("#calendario").datepicker(
 				{
 					dateFormat : 'dd/mm/yy',
-					dayNames : [ 'Domingo', 'Segunda', 'Terça', 'Quarta',
-							'Quinta', 'Sexta', 'Sábado', 'Domingo' ],
+					dayNames : [ 'Domingo', 'Segunda', 'TerÃ§a', 'Quarta',
+							'Quinta', 'Sexta', 'SÃ¡bado', 'Domingo' ],
 					dayNamesMin : [ 'D', 'S', 'T', 'Q', 'Q', 'S', 'S', 'D' ],
 					dayNamesShort : [ 'Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex',
-							'Sáb', 'Dom' ],
-					monthNames : [ 'Janeiro', 'Fevereiro', 'Março', 'Abril',
+							'SÃ¡b', 'Dom' ],
+					monthNames : [ 'Janeiro', 'Fevereiro', 'MarÃ§o', 'Abril',
 							'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro',
 							'Outubro', 'Novembro', 'Dezembro' ],
 					monthNamesShort : [ 'Jan', 'Fev', 'Mar', 'Abr', 'Mai',
@@ -91,7 +93,10 @@ p>input {
 				<div class="col-sm-3">
 					<select onChange="Change('inputCidade')" name="estado" id="inputEstado" class="form-control">
 						<option value="null" selected>Selecionar</option>
-						<option>Mato Grosso do Sul</option>
+						<c:forEach var="linha" items="${listaAgenda}">
+						<option selected value="${linha.nomeEstado}" >${linha.nomeEstado}</option>
+						</c:forEach>
+						<option selected value="null">Selecionar</option>
 
 					</select>
 				</div>
@@ -102,8 +107,11 @@ p>input {
 				<div class="col-sm-3">
 					<select onChange="Change('exame')" required name="cidade" id="inputCidade"
 						class="form-control">
-						<option value ="null"selected>Selecionar</option>
-						<option>Campo Grande</option>
+						<c:forEach var="linha" items="${listaAgendaCidade}">
+						<option selected value="${linha.nomeCidade}" >${linha.nomeCidade}</option>
+						</c:forEach>
+						<option selected value="null">Selecionar</option>	
+
 					</select>
 				</div>
 			</div>
@@ -112,25 +120,23 @@ p>input {
 				<label class="control-label col-sm-2">Exame</label>
 				<div class="col-sm-3">
 					<select onChange="Change('ubs')" name="exame" class="form-control" id="exame">
-						<option value="null "selected>Selecionar</option>
-						<option value="Tomografia ">Tomografia</option>
-						<option value="Radiologia">Radiologia</option>
-						<option value="Urina">Urina</option>
-						<option value="Sangue ">Sangue</option>
+						<c:forEach var="linha" items="${listaAgendaExame}">
+						<option selected value="${linha.nomeExame}" >${linha.nomeExame}</option>
+						</c:forEach>
+						<option selected value="null">Selecionar</option>
 					</select>
 				</div>
 
 			</div>
 			<div class="form-group">
-				<label class="control-label col-sm-2">UBS - Unidade Básica
-					de Saúde</label>
+				<label class="control-label col-sm-2">UBS - Unidade BÃ¡sica
+					de SaÃºde</label>
 				<div class="col-sm-3">
 					<select  onChange="Change('calendario')" name="ubs" class="form-control" id="ubs">
-						<option value="null" selected>Selecionar</option>
-						<option value="Posto Nova Bahia ">Posto Nova Bahia</option>
-						<option value="Posto Coronel Antonino">Posto Coronel
-							Antonino</option>
-						<option value="Posto Tiradentes">Posto Tiradentes</option>
+						<c:forEach var="linha" items="${listaAgendaPosto}">
+						<option selected value="${linha.nomePosto}" >${linha.nomePosto}</option>
+						</c:forEach>
+						<option selected value="null">Selecionar</option>
 					</select>
 				</div>
 
@@ -207,7 +213,7 @@ p>input {
 			var data = new Date(partesData[2], partesData[1] - 1, partesData[0]);
 			data.setHours(23, 59, 59);
 			if (data < new Date(Date.now())) {
-				document.getElementById('mensagem').textContent = "A data da consulta não pode ser anterior à data atual.";
+				document.getElementById('mensagem').textContent = "A data da consulta nÃ£o pode ser anterior Ã  data atual.";
 				ocultar();
 				return false;
 			}

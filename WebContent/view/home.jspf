@@ -1,16 +1,74 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="ISO-8859-1">
-<title>Home</title>
 
+<title>Home</title>
+<meta http-equiv=”Content-Type” content=”text/html; charset=utf-8″>
 
 <link rel="stylesheet" type="text/css"
-	href="./resources/bootstrap/css/slideer.css">
+	href="./resources/bootstrap/css/slider.css">
 <script type="text/javascript" src="./resources/bootstrap/js/slider.js"></script>
 
 
+<!-- jQuery CDN -->
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
+<link rel="stylesheet"
+	href="http://code.jquery.com/ui/1.9.0/themes/base/jquery-ui.css" />
+<script src="http://code.jquery.com/jquery-1.8.2.js"></script>
+<script src="http://code.jquery.com/ui/1.9.0/jquery-ui.js"></script>
+
+<style type="text/css">
+.campanha01 {
+	margin-left: 50%;
+}
+
+.campanha01 h4 {
+	font-family: sans-serif;
+}
+
+.campanha02 {
+	margin-left: 75%;
+	margin-top: -239px;
+}
+
+.noticia01 {
+	margin-left: 2%;
+	margin-top: -260px;
+}
+
+.noticia01>#mulher {
+	margin-left: 24%;
+}
+
+.noticia02 {
+	margin-left: 52%;
+	margin-top: -480px;
+	margin-bottom: 50px;
+}
+
+section{
+	margin-left:25px;
+
+}
+</style>
+<script type="application/javascript">
+	
+	
+$(document).ready(function () {
+	var alt1 = false;
+	var alt2 = false;
+	document.getElementById('not1').style.display = 'none';
+	document.getElementById('not2').style.display = 'none';
+	document.getElementById('not3').style.display = 'none';
+	document.getElementById('not4').style.display = 'none';
+});
+
+
+
+</script>
 </head>
 <body>
 
@@ -25,7 +83,7 @@
 				alt="Programa de assistencia a idosos chega na cidade de Campo Grande-MS" /></a>
 			<a href="#" class="trs"><img
 				src="./resources/bootstrap/img/2.jpg" width=1500px height=450px
-				alt="Alunos de escola p�blica s�o atendidos no interior de Mato Grosso do Sul" /></a>
+				alt="Alunos de escola pública são atendidos no interior de Mato Grosso do Sul" /></a>
 			<a href="#" class="trs"><img
 				src="./resources/bootstrap/img/portal_sus_online.png" width=1500px
 				height=450px alt="Saiba mais sobre o Portal Sus Online" /></a>
@@ -35,7 +93,7 @@
 	</figure>
 
 	<h1>PORTAL SUS ONLINE</h1>
-
+	<div class="portal"></div>
 	<!-- Aqui apenas o menu abaixo das imagens/slides -->
 	<div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
 		<div class="container">
@@ -43,12 +101,12 @@
 
 			<div class="navbar">
 				<div class="row">
-					<a style="margin-right: 5px;"
+					<a id="a01" style="margin-right: 5px;"
 						href="InicialController?action=home_barra_superior" role="button">Home</a>
-					<a style="margin-right: 5px;"
+					<a id="a02" style="margin-right: 5px;"
 						href="InicialController?action=iniciar_login_conta" role="button">Login</a>
-					<a style="margin-right: 5px;"
-						href="InicialController?action=exibir_usuarios" role="button">�rea Restrita</a>
+					<!-- <a id="a03" style="margin-right: 5px;"
+						href="InicialController?action=exibir_usuarios" role="button"></a>-->
 
 
 				</div>
@@ -57,6 +115,326 @@
 	</div>
 
 
+	<div class="campanha01">
+
+		<a href=""><img onmouseover="bigImg(this)"
+			onmouseout="normalImg(this)" border="0"
+			src="./resources/bootstrap/img/vacina01.jpg" alt="vacina"></a>
+		<p>
+			Campanha de vacinação de 07/06/2019 <br>a 30/06/2019. <a onclick="show('3')"
+				href="#not3">Clique para saber mais</a>
+		</p>
+
+
+	</div>
+
+
+	<div class="campanha02">
+		<a href=""><img onmouseover="bigImg(this)"
+			onmouseout="normalImg(this)" border="0"
+			src="./resources/bootstrap/img/sangue.jpg" alt="Sangue"></a>
+		<p>
+			Campanha de doação de sangue de 07/06/2019 a 30/06/2019 <a onclick="show('4')"
+				href="#not4">Clique para saber mais</a>
+		</p>
+	</div>
+	<div class="noticia01">
+		<a href=""><img onmouseover="bigImg(this)"
+			onmouseout="normalImg(this)" border="0"
+			src="./resources/bootstrap/img/vegetais.jpg" alt="vegetais"></a>
+		<h4>Os 10 melhores alimentos para saúde</h4>
+		<p>
+			Saúde e bem-estar são as palavras chaves do dia a dia de quem segue à
+			risca os conceitos <br>da alimentação saudável, mas não abre mão
+			de saborear os melhores pratos! Por isso, para <br> quem quer
+			sempre estar atento ao que consome, nós separamos os 10 alimentos <br>
+			mais completos para acrescentar à sua rotina e tornar o seu corpo, ao
+			<br>mesmo tempo, forte, bonito e nutrido! <a onclick="show('1')"
+				href="#not1">Clique para saber mais</a>
+		</p>
+		<br>
+		<h4 id="mulher">Cuidado para saúde da mulher!</h4>
+		<p>
+			Segundo a Organização Mundial da Saúde (OMS), os problemas de saúde
+			que mais afetam <br> as mulheres atualmente são as doenças
+			cardíacas, seguidas pelas infecções respiratórias, como <br>
+			pneumonia e bronquite; e pela doença pulmonar obstrutiva crônica
+			(DPOC). O câncer de <br>mama, que muitas vezes é lembrado como o
+			maior vilão da saúde da mulher, aparece em 10º <br> lugar na
+			lista das doenças da mulher, atrás de problemas como diabetes,
+			hipertensão e <br>complicações por parto prematuro. <a
+				onclick="show('2')" href="#not2">Clique para saber mais</a>
+		</p>
+	</div>
+	<div class="noticia02">
+		<a href=""><img onmouseover="bigImg(this)"
+			onmouseout="normalImg(this)" border="0"
+			src="./resources/bootstrap/img/mulheres.jpg" alt="mulheres"></a>
+
+	</div>
+
+	<section id="not1" name="not1">
+	<a id="a01" style="margin-left: 1000px;"
+						href="InicialController?action=home_barra_superior" role="button">Home</a>
+		<h2>10 melhores alimentos para a saúde</h2><hr>
+		
+		<p class="pe">
+			<strong>1 - Ovo:</strong> É um dos alimentos mais utilizados em
+			receitas, saboroso, prático e barato. "Dentre os nutrientes
+			essenciais para a boa saúde que são encontrados no ovo, destacam-se o
+			ácido fólico, a proteína, o zinco, o ferro, o manganês e o potássio,
+			por exemplo. Ao contrário dos alimentos ricos em gorduras saturadas,
+			o ovo apresenta uma concentração de gorduras totais em torno de 5
+			gramas, sendo que destes, apenas 1,5 grama é de gordura saturada",
+			explica a profissional. "Em outras palavras, o consumo regular de ovo
+			não é prejudicial à saúde (claro, desde que você evite a versão frita
+			do alimento)", completa.<br> <br> <strong> 2 -
+				Alho:</strong>strong Um dos temperos mais presentes nas nossas preparações, o
+			alho é benéfico e cheio de nutrientes: "É uma alimento riquíssimo e
+			vitaminas do complexo B, A, C e E. Minerais como ferro, iodo e cromo,
+			compostos ativos como alicina, por exemplo. Ele possui substâncias
+			com potencial antimicrobiano, antiviral e anticoagulante. Também
+			possui ação diurética, expectorante, antifúngico, antiespasmódico,
+			vasodilatador, imunoestimulante e broncodilatador", analisa Thaís
+			Leopoldo.<br> <br> <strong>3 - Maçã:</strong> Saborosa,
+			suculenta e saudável, a fruta é extremamente benéfica para o nosso
+			corpo. "Por conter um alto teor de fibras, a maçã ajuda a regular o
+			intestino garantindo menos estresse sobre o reto. O antioxidante
+			quercetina, encontrado na maçã, foi identificado por pesquisadores
+			como especialmente capaz de fortalecer o sistema imunológico. Essa
+			propriedade da maçã já é há séculos reconhecida pela sabedoria
+			popular, que sempre afirmou a capacidade da maçã de evitar as mais
+			variadas doenças", indica a nutricionista. "Além disso, a fruta é
+			capaz de ajudar a proteger o coração de doenças cardiovasculares e na
+			casca da maçã são encontrados elementos capazes de prevenir que as
+			gorduras se solidifiquem dentro das artérias", reitera.<br> <br>
+			<strong> 4 - Cúrcuma:</strong> Também conhecido como açafrão, ela é
+			altamente nutritiva e ajudará a tornar o nosso organismo saudável,
+			livre de enfermidades: "Por possuir uma grande ação anti-inflamatória
+			da curcumina, a cúrcuma tem o poder de ajudar no processo de
+			emagrecimento a diminuir a quantidade de gordura corporal. É um
+			desintoxicante natural do fígado, ajuda na prevenção de melanoma,
+			além de ser antisséptico e antibacteriano natural, sendo muito
+			utilizado para desinfetar cortes e queimaduras", explica a
+			especialista.<br> <br> <strong> 5 - Couve:</strong> Um dos
+			vegetais verde-escuros mais conhecidos, a couve deve estar presente
+			quase que diariamente na nossa alimentação saudável: "A couve é muito
+			utilizado em dietas por ser pobre em calorias. Também é rica em
+			minerais como ferro, cálcio e vitaminas A e complexo B, sendo
+			excelente para combater problemas digestivos como constipação e
+			indigestão por também ser rica em fibras. Fonte de glicosinolatos,
+			que são fitoquímicos naturais como ação desintoxicante", ressalta
+			Dra. Thaís.<br> <br> <strong> 6 - Limão:</strong> Seja no
+			suco, como tempero e até na sobremesa, o limão é versátil e saboroso,
+			encaixando em diversos momentos da nossa alimentação. "É uma fruta
+			riquíssima em vitamina C, importante para um bom funcionamento do
+			sistema imunológico. Também é fonte de cálcio, magnésio, ferro, cobre
+			e iodo que equilibram o nosso organismo. O suco do limão podem ajudar
+			a aliviar sintomas de indigestão e constipação por conter uma grande
+			quantidade de fibras, além de ajudar a alcalinizar o sangue", analisa
+			a nutricionista. <br> <br> <strong>7 - Lentilha:</strong>
+			Da mesma família do feijão, a lentilha é rica em proteínas e fibras
+			alimentares, substâncias ideais para nosso bem-estar: "Por ser
+			composta de fibras insolúveis ajuda na absorção de gordura ingeridas.
+			Atua na tensão pré-menstrual, por conter uma substância chamada
+			lignanas, que tem uma ação parecida ao hormônio feminino, como
+			estrogênio que ajuda a diminuir os sintomas de TPM. Além de possuir
+			cálcio, responsável por produzir hormônios importantes para
+			fortalecer os ossos" indica a profissional.<br> <br> <strong>8
+				- Canela:</strong> É uma das especiarias mais antigas do mundo, de importante
+			atuação no nosso organismo: "Possui uma propriedade antioxidante
+			poderosa. Além de auxiliar no controle de insulina de diabéticos e
+			pré-diabéticos. A canela impulsiona a atividade do cérebro e,
+			portanto, atua como bom tônico. Ajuda na eliminação de perda nervosa
+			da tensão. Estudos mostraram que cheirar canela pode impulsionar a
+			função cognoscitiva da memória, o funcionamento de certas tarefas e
+			aumenta a vigilância e concentração", reitera.<br> <br> <strong>9
+				- Alecrim:</strong> A erva é conhecida por ser um alimento completo. De aroma
+			peculiar, o alecrim pode estar presente em sucos, molhos, sopas e
+			águas aromatizadas. Segundo Thaís Leopoldo, é um alimento com
+			propriedades antifúngicas e anti-inflamatórias, além de ser um
+			relaxante muscular e cicatrizante. Por ser rico em vitaminas do
+			complexo B e minerais como ferro e cálcio, seu consumo atua também na
+			prevenção da anemia, no fortalecimento e desenvolvimento de ossos e
+			músculos.<br> <br> <strong> 10 - Quinoa:</strong> Chama de
+			superalimento, por ser fonte de diversos nutrientes para o nosso
+			corpo, as substâncias encontradas no "pseudo cereal" atuam no nosso
+			organismo de uma forma geral. Rica em proteínas, ela atua em prol da
+			saúde cardiovascular, prevenindo infarto, derrames, por exemplo.
+			Beneficia os músculos, tornando-os saudáveis e fortes, além de ser
+			fonte de ômega 3, um ácido-graxo responsável pela saúde do cérebro e
+			do coração.
+		</p>
+	</section>
+
+	<section id="not2" name="not2">
+	<a id="a01" style="margin-left: 1000px;"
+						href="InicialController?action=home_barra_superior" role="button">Home</a>
+		<h2>Saúde da mulher vai além dos cuidados ginecológicos</h2>
+		<hr>
+		<p class=pe>O dia 28 de maio é uma data muito especial para as
+			mulheres. Nesse dia celebra-se o Dia Internacional de Luta Pela Saúde
+			da Mulher e, no Brasil, também o Dia Nacional de Redução da
+			Mortalidade Materna. As duas celebrações são frutos de décadas de
+			mobilizações do movimento feminista por mais direitos no campo da
+			sexualidade e reprodução, acesso à informação, educação e serviços de
+			saúde. <br>Todos os anos, nesta data, mulheres no Brasil e no mundo se
+			reúnem em debates e manifestações para chamar a atenção da sociedade
+			sobre a saúde da população feminina. Segundo a Organização Mundial da
+			Saúde (OMS), os problemas de saúde que mais afetam as mulheres
+			atualmente são as doenças cardíacas, seguidas pelas infecções
+			respiratórias, como pneumonia e bronquite; e pela doença pulmonar
+			obstrutiva crônica (DPOC). <br>O câncer de mama, que muitas vezes é
+			lembrado como o maior vilão da saúde da mulher, aparece em 10º lugar
+			na lista das doenças da mulher, atrás de problemas como diabetes,
+			hipertensão e complicações por parto prematuro. “Ainda existe um
+			aspecto cultural muito forte nas famílias em que as mulheres cuidam
+			da saúde dos seus filhos e dos maridos e muitas vezes esquecem de si
+			mesmas”, observa a cardiologista e responsável pelo Centro de
+			Acompanhamento da Saúde e Check-up do Hospital Sírio-Libanês, a dra.
+			Danielli Haddad Syllos Dezen. Acompanhamento da saúde e check-up da
+			mulher Apesar da maioria das mulheres terem um ginecologista como seu
+			clínico geral, as doenças que mais afetam a população feminina,
+			conforme mostram os dados da OMS, envolvem também outras áreas da
+			medicina.<br> Ciente disso, o Hospital Sírio-Libanês criou um serviço
+			integral de acompanhamento da saúde e check-up para as mulheres. Esse
+			programa oferece atendimento multiprofissional para todas as etapas
+			da vida. Para a faixa dos 10 a 20 anos de idade, por exemplo, o
+			Hospital Sírio-Libanês foi um dos pioneiros do País a ofertar uma
+			avaliação coordenada por um médico hebiatra – profissional
+			especialista em saúde na adolescência. Por entender bem as
+			transformações físicas e comportamentais dessa população, o hebiatra
+			buscar criar um vínculo de aproximação com as pacientes e assim
+			analisar e cuidar de problemas relacionados à sexualidade,
+			transtornos alimentares, tabagismo, consumo de álcool, sedentarismo,
+			estresse, depressão, entre outros. “Nós que trabalhamos com saúde
+			sabemos cada vez mais que muitas doenças começam a se desenvolver na
+			infância e na adolescência”, comenta a dra. Danielli. “Por isso não
+			existe uma data certa para iniciarmos os cuidados com a saúde. Quanto
+			antes, melhor”, completa.<br> Para as mulheres adultas, o serviço de
+			Acompanhamento da Saúde e Check-up do Hospital Sírio-Libanês é
+			conduzido por um clínico geral. No entanto, a abordagem das mulheres
+			no Centro oferece um olhar integral. Elas são avaliadas por
+			profissionais com enfoque nas principais características e
+			necessidades delas, de acordo com faixa etária, como: Ginecologia
+			(que aborda questões como prevenção de câncer ginecológico, menopausa
+			e infertilidade e endometriose) Nutrição Dermatologia Fisiatria
+			(motiva o abandono ao sedentarismo de forma segura, respeitando as
+			características musculoesqueléticas, e aborda riscos de osteoporose)
+			Odontologia (avalia presença de periodontite, bruxismo – este
+			interferindo na qualidade do sono) Oftalmologia Psicologia (aborda
+			como lidar com as várias jornadas do cotidiano: mãe, mulher,
+			profissional) Aconselhamento genético (uma arma para aquelas com alto
+			risco familiar para desenvolvimento para determinados tipos de
+			câncer).<br> Além de exames de sangue laboratoriais e de imagens, o
+			serviço de check-up oferece, em parceria o Centro de Imunizações,
+			diversos tipos de vacinas para o público feminino, como a vacina
+			contra o HPV (papilomavírus humano), coqueluche, rubéola, hepatites A
+			e hepatite B, pneumonia, herpes-zóster e meningite. A abordagem do
+			risco cardiovascular é feita por meio do cálculo do Score de Risco
+			Global. Em casos específicos, o aprofundamento de investigação
+			diagnóstica se dá em parceria com o Centro de Cardiologia do
+			hospital. Já com o Centro de Oncologia, o check-up criou um tipo de
+			avaliação que mede os riscos que as mulheres têm de desenvolver
+			alguns tipos de câncer mais prevalentes nesta população, entre eles
+			os de mama, ovários e intestino. Por meio de fórmulas matemáticas,
+			que levam em conta fatores específicos de cada mulher, esse serviço
+			identifica aquelas com maiores riscos e propõe um plano estratégico
+			de prevenção. Essa ação envolve desde mudanças de hábitos de vida –
+			como perda de peso, prática de atividade física, tratamento para
+			parar de fumar, alimentação rica em fibras e pouco gordurosa – até
+			acompanhamentos mais personalizados, com medicações preventivas e
+			rastreamentos mais adequados, incluindo aconselhamento genético,
+			explica a dra. Danielli.<br> Todas essas avaliações do serviço de
+			Acompanhamento da Saúde e Check-up da Mulher do Hospital
+			Sírio-Libanês duram, em média, 6 horas. Acesse aqui e conheça mais
+			sobre esse serviço.</p>
+
+	</section>
+	<br><br><br><br><br>
+	<section id="not3" name="not3">
+	<a id="a01" style="margin-left: 1000px;"
+						href="InicialController?action=home_barra_superior" role="button">Home</a>
+	<h2>Campanha de vacinação</h2><hr>
+	<h6>De 07/06/2019 a 30/06/2019</h6>
+		<p class=pe>A meta do Ministério da Saúde é de imunizar 90% de
+			cada grupo prioritário, que são os professores, idosos, puérperas,
+			gestantes, profissionais da saúde, população carcerária e sistema
+			prisional, pessoas com comorbidade e crianças. O alerta é para as
+			crianças entre 6 meses e 6 anos incompletos. Até a sexta-feira (14),
+			quase 1,2 mil crianças não haviam sido vacinadas em Resende, RJ. A
+			vacinação havia sido estendida por conta da baixa procura. Desta
+			forma, as vacinas que sobraram serão colocadas à disposição até
+			enquanto durarem os estoques municipais. A vacina contra a gripe tem
+			duração de um ano, portanto, aqueles que se imunizaram no último ano,
+			devem se vacinar novamente.</p>
+
+	</section>
+	<br><br><br>
+	<section id="not4" name="not4">
+	<a id="a01" style="margin-left: 1000px;"
+						href="InicialController?action=home_barra_superior" role="button">Home</a>
+	<h2>Campanha de vacinação</h2><hr>
+	<h6>De 19/06/2019 a 20/07/2019</h6>
+		<p class=pe>A ação social é realizada há cinco anos no Hospital
+			Regional Norte, em parceria com o Hemoce, também da rede pública do
+			Governo do Ceará. Além de colaboradores, toda a população de Sobral
+			poderá comparecer ao ambulatório do HRN com um documento oficial com
+			foto para realizar a doação. A campanha é realizada três vezes ao ano
+			(fevereiro, junho e novembro). Neste mês, ocorre em alusão ao Dia
+			Mundial do Doador de Sangue (14 de junho). E o tema deste ano é “Você
+			é a peça que falta na vida de alguém”. A proposta é mostrar que cada
+			pessoa pode fazer a sua parte, seja doando sangue ou mobilizando
+			outras para a ação solidária. Com peças ilustrativas para redes
+			sociais, cartazes, banners e adesivos para veículos, a campanha está
+			sendo divulgada em todo o Estado para sensibilizar a sociedade. “Nós
+			acreditamos na responsabilidade social, no compromisso de salvar
+			vidas”, ressalta Iara Pinto, coordenadora do Serviço Social do HRN. O
+			que é necessário para doar sangue Para doar sangue, é necessário
+			levar documento oficial de identidade com foto, estar em boas
+			condições de saúde; ter entre 16 e 69 anos e pesar no mínimo 50 kg;
+			descansado (ter dormido pelo menos seis horas nas últimas 24h) e bem
+			alimentado (evitar alimentação gordurosa quatro horas antes da
+			doação). O intervalo de doação para homens é de dois meses (máximo de
+			quatro doações em um ano) e para mulheres é de três meses (máximo de
+			três doações no período de um ano). É preciso ainda não ter
+			diagnóstico de hepatite após os 11 anos de idade, não estar grávida
+			ou amamentando, não estar exposto a doenças transmissíveis pelo
+			sangue, não ser usuário de drogas e não ter relacionamento sexual com
+			parceiro desconhecido ou eventual sem uso de preservativos.</p>
+
+	</section>
 
 </body>
+<script type="text/javascript">
+	function show(id) {
+		var a = document.getElementById('not' + id);
+		if (a.style.display == 'none') {
+			document.getElementById('not' + id).style.display = 'block';
+			if (id == 1) {
+				document.getElementById('not' + 2).style.display = 'none';
+				document.getElementById('not' + 3).style.display = 'none';
+				document.getElementById('not' + 4).style.display = 'none';
+			}
+			if (id == 2) {
+				document.getElementById('not' + 1).style.display = 'none';
+				document.getElementById('not' + 3).style.display = 'none';
+				document.getElementById('not' + 4).style.display = 'none';
+			}
+			if (id == 3) {
+				document.getElementById('not' + 1).style.display = 'none';
+				document.getElementById('not' + 2).style.display = 'none';
+				document.getElementById('not' + 4).style.display = 'none';
+			}
+			if (id == 4) {
+				document.getElementById('not' + 1).style.display = 'none';
+				document.getElementById('not' + 2).style.display = 'none';
+				document.getElementById('not' + 3).style.display = 'none';
+			}
+		} else {
+			document.getElementById('not' + id).style.display = 'none';
+		}
+
+	}
+</script>
 </html>

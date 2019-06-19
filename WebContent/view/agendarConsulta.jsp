@@ -120,11 +120,10 @@ p>input {
 					de Saúde</label>
 				<div class="col-sm-3">
 					<select onChange="Change('especialidade')" name="ubs" class="form-control" id="ubs" required>
-						<option selected value="null">Selecionar</option>
-						<option value="Posto Nova Bahia ">Posto Nova Bahia</option>
-						<option value="Posto Coronel Antonino">Posto Coronel
-							Antonino</option>
-						<option value="Posto Tiradentes">Posto Tiradentes</option>
+						<c:forEach var="linha" items="${listaAgendaPosto}">
+						<option selected value="${linha.nomePosto}" >${linha.nomePosto}</option>
+						</c:forEach>
+						<option selected value="null">Selecionar</option>	
 					</select>
 				</div>
 
@@ -134,10 +133,10 @@ p>input {
 				<div class="col-sm-3">
 					<select onChange="Change('medico')" name="especialidade" class="form-control"
 						id="especialidade" required>
-						<option selected value="null">Selecionar</option>
-						<option value="Cardiologista ">Cardiologista</option>
-						<option value="Clinico Geral">Clinico Geral</option>
-						<option value="Oftalmologista">Oftalmologista</option>
+						<c:forEach var="linha" items="${listaAgendaEsp}">
+						<option selected value="${linha.nomeEspecialiade}" >${linha.nomeEspecialiade}</option>
+						</c:forEach>
+						<option selected value="null">Selecionar</option>	
 					</select>
 				</div>
 
@@ -147,10 +146,10 @@ p>input {
 				<label class="control-label col-sm-2">Médico(a)</label>
 				<div class="col-sm-3">
 					<select onChange="Change('calendario')" name="medico" class="form-control" id="medico" required>
-						<option value="null">Selecionar</option>
-						<option value="Dr Sandra ">Dr Sandra</option>
-						<option value="Dr Rebeca">Dr Rebeca</option>
-						<option value="Dr Marcelo">Dr Marcelo</option>
+						<c:forEach var="linha" items="${listaAgendaMedico}">
+						<option selected value="${linha.nomeMedico}" >${linha.nomeMedico}</option>
+						</c:forEach>
+						<option selected value="null">Selecionar</option>	
 					</select>
 				</div>
 

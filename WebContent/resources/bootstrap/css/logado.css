@@ -21,3 +21,24 @@ p {
 }
 
 
+.navbar{
+	margin-top:40px;
+}
+a{
+	
+	margin-right: 10px;
+	margin-left:10px;
+	text-decoration:none;
+	border: 1px solid;
+	padding:8px;
+	color:white;
+	background-color: #4876FF;
+	
+}
+
+a:hover{
+	background-color: #0000FF;
+	
+}
+
+

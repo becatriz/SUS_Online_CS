@@ -17,6 +17,7 @@ import javax.servlet.http.HttpSession;
 import br.com.sus_online.model.AgendaConsulta;
 import br.com.sus_online.model.Autentica_Usuario;
 import br.com.sus_online.model.EstadosCidades;
+import br.com.sus_online.model.PostoEpecialidadeMedicoExame;
 import br.com.sus_onlineDao.model.DaoConsultaseExames;
 
 /**
@@ -45,7 +46,6 @@ public class ConsultasController extends HttpServlet {
 		if (action == null) {
 			throw new ServletException("No action specified.");
 		} else if (action.equals("consulta_agenda")) {
-			String dt1 = request.getParameter("dataIni");
 			irParaAgenda(request, response);
 		} else if (action.equals("agendar_consulta")) {
 			irAgendarConsulta(request, response);
@@ -71,7 +71,24 @@ public class ConsultasController extends HttpServlet {
 			if (nomeCidade.isEmpty()) {
 				nomeCidade = daoConsultaExame.getListaCidades();
 			}
+			
+			//Lista Posto
+			List<PostoEpecialidadeMedicoExame> nomePostos = new ArrayList<PostoEpecialidadeMedicoExame>();
+			 if(nomePostos.isEmpty()) {
+				 nomePostos = daoConsultaExame.getListaPosto();
+			 }
+			 //Lista Especialidade
+			 List<PostoEpecialidadeMedicoExame> nomeEspeci = new ArrayList<PostoEpecialidadeMedicoExame>();
+			if(nomeEspeci.isEmpty()) {
+				nomeEspeci = daoConsultaExame.getListaEspecialidade();			 
+			}
 
+			//Lista Medico
+			List<PostoEpecialidadeMedicoExame> listaMedico = new ArrayList<PostoEpecialidadeMedicoExame>();
+			if(listaMedico.isEmpty()) {
+				listaMedico = daoConsultaExame.getListaMedico();
+			}
+			
 			// Lista Agenda Estado
 			if (nomeEstado.size() > 0) {
 				request.setAttribute("listaAgenda", nomeEstado);
@@ -89,6 +106,31 @@ public class ConsultasController extends HttpServlet {
 			} else {
 				request.setAttribute("temAgenda", false);
 			}
+			
+			//Lista Agenda Posto
+			if(nomePostos.size() > 0) {
+				request.setAttribute("listaAgendaPosto", nomePostos);
+				request.setAttribute("temAgenda", true);
+			}else {
+				request.setAttribute("temAgenda", false);
+			}
+			
+			//Lista Agenda Especialidade
+			if(nomeEspeci.size() > 0) {
+				request.setAttribute("listaAgendaEsp", nomeEspeci);
+				request.setAttribute("temAgenda", true);
+			}else {
+				request.setAttribute("temAgenda", false);
+			}
+			
+			//Lista Agenda Medico
+			if(listaMedico.size() > 0) {
+				request.setAttribute("listaAgendaMedico", listaMedico);
+				request.setAttribute("temAgenda", true);
+			}else {
+				request.setAttribute("temAgenda", false);
+			}
+			
 
 			request.getRequestDispatcher("view/agendarConsulta.jsp").forward(request, response);
 
@@ -212,7 +254,7 @@ public class ConsultasController extends HttpServlet {
 				request.setAttribute("mensagem", "Salvo");
 				request.getRequestDispatcher("view/sucessoAgendamento.jsp").forward(request, response);
 			} else {
-				String msg = "Já existe uma consulta no mesmo dia e horário.";
+				String msg = "Jï¿½ existe uma consulta no mesmo dia e horï¿½rio.";
 				request.setAttribute("mensagem", msg);
 				request.getRequestDispatcher("view/falhaAgendamento.jsp").forward(request, response);
 			}

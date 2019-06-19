@@ -240,6 +240,8 @@
 			</div>
 		</div>
 		
+		<button type="button" onClick="window.print();">Imprimir</button>
+		
 	</div>
 
 

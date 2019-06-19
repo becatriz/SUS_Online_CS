@@ -27,8 +27,8 @@ public class InicialController extends HttpServlet {
 	
 	private DaoConsultaseExames daoConsultaExame = new DaoConsultaseExames();
 	private DaoUsuario daoUsuarios = new DaoUsuario();
-	DaoConsultaseExames dao = new DaoConsultaseExames();
 	
+	private DaoConsultaseExames dao = new DaoConsultaseExames();
 	private DaoConsultaseExames daoExame = new DaoConsultaseExames();
 
 
@@ -169,7 +169,7 @@ public class InicialController extends HttpServlet {
 
 		}
 
-		// Se não encontrou usuario no banco, redireciona para a pagina de erro!
+		// Se nï¿½o encontrou usuario no banco, redireciona para a pagina de erro!
 		if (user == null) {
 			session.invalidate();
 			request.getRequestDispatcher("view/aviso_nao_tem_conta_criada.jsp").forward(request, response);
@@ -182,12 +182,12 @@ public class InicialController extends HttpServlet {
 
 	}
 
-//Metodo de validação de senha e usuario caso fuja da regra 
+//Metodo de validaï¿½ï¿½o de senha e usuario caso fuja da regra 
 	private void ValidarUsuarioSenha(HttpServletRequest request, HttpServletResponse response, HttpSession session,
 			String login_form, String senha_form) throws ServletException, IOException {
 		if (login_form == null || login_form.isEmpty() || login_form.length() > 15 || login_form.length() < 6) {
 			session.invalidate();
-			request.setAttribute("mensagem", "Usuário inválido; usuário deve ter entre 6 e 15 caracteres.");
+			request.setAttribute("mensagem", "Usuï¿½rio invï¿½lido; usuï¿½rio deve ter entre 6 e 15 caracteres.");
 			request.getRequestDispatcher("view/mensagem.jsp").forward(request, response);
 		}
 		for (int i = 0; i < login_form.length(); i++) {
@@ -196,14 +196,14 @@ public class InicialController extends HttpServlet {
 			if (!(Character.isLetter(caracter) || Character.isDigit(caracter))) {
 				session.invalidate();
 				request.setAttribute("mensagem",
-						"Usuário inválido: usuário deve conter apenas letras, números ou caracteres '.' e '_'.");
+						"Usuï¿½rio invï¿½lido: usuï¿½rio deve conter apenas letras, nï¿½meros ou caracteres '.' e '_'.");
 				request.getRequestDispatcher("view/mensagem.jsp").forward(request, response);
 			}
 		}
 
 		if (senha_form == null || senha_form.isEmpty() || senha_form.length() > 10 || senha_form.length() < 6) {
 			session.invalidate();
-			request.setAttribute("mensagem", "Senha inválida: senha deve ter entre 6 e 15 caracteres.");
+			request.setAttribute("mensagem", "Senha invï¿½lida: senha deve ter entre 6 e 15 caracteres.");
 			request.getRequestDispatcher("view/mensagem.jsp").forward(request, response);
 		}
 		int contLetra = 0;
@@ -213,7 +213,7 @@ public class InicialController extends HttpServlet {
 
 			if (!(Character.isLetter(caracter) || Character.isDigit(caracter) || caracter == '_' || caracter == '.')) {
 				session.invalidate();
-				request.setAttribute("mensagem", "Senha inválida; senha deve conter apenas letras e números.");
+				request.setAttribute("mensagem", "Senha invï¿½lida; senha deve conter apenas letras e nï¿½meros.");
 				request.getRequestDispatcher("view/mensagem.jsp").forward(request, response);
 			} else {
 				if (Character.isLetter(caracter))
@@ -225,7 +225,7 @@ public class InicialController extends HttpServlet {
 
 		if (contLetra == 0 || contNumero == 0) {
 			session.invalidate();
-			request.setAttribute("mensagem", "Senha inválida; senha deve conter letras e números.");
+			request.setAttribute("mensagem", "Senha invï¿½lida; senha deve conter letras e nï¿½meros.");
 			request.getRequestDispatcher("view/mensagem.jsp").forward(request, response);
 		}
 	}

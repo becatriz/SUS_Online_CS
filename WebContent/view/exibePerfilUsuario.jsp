@@ -35,72 +35,70 @@
 
 	</div>
 
-	<h1>Histórico de Consultas e Exames</h1>
-
-	<form class="vt" action="InicialController?action=irParaPerfilUsuario"
-		method="get">
+	<h1>Minha Agenda - Histórico de Exames e Consultas</h1>
 
 
-		<h4>Exames</h4>
 
-		<div class="col-xs-8">
-			<table border=5 class=table>
-				<thead>
+	<h4>Exames</h4>
+
+	<div class="col-xs-8">
+		<table border=5 class=table>
+			<thead>
+				<tr>
+					<th>Data</th>
+					<th>Hora</th>
+					<th>Estado</th>
+					<th>Cidade</th>
+					<th>Posto</th>
+					<th>Exame</th>
+				</tr>
+			</thead>
+			<tbody>
+				<c:forEach var="linha" items="${listaAgenda}">
 					<tr>
-						<th>Data</th>
-						<th>Hora</th>
-						<th>Estado</th>
-						<th>Cidade</th>
-						<th>Posto</th>
-						<th>Exame</th>
+						<td>${linha.data}</td>
+						<td>${linha.hora}</td>
+						<td>${linha.estado}</td>
+						<td>${linha.cidade}</td>
+						<td>${linha.ubs}</td>
+						<td>${linha.exame}</td>
 					</tr>
-				</thead>
-				<tbody>
-					<c:forEach var="linha" items="${listaAgenda}">
-						<tr>
-							<td>${linha.data}</td>
-							<td>${linha.hora}</td>
-							<td>${linha.estado}</td>
-							<td>${linha.cidade}</td>
-							<td>${linha.ubs}</td>
-							<td>${linha.exame}</td>
-						</tr>
-						<tbody>
-					</c:forEach>
-			</table>
-		</div>
-		<br>
-		<br>
-		<br>
-		<div class="col-xs-8">
-			<h4>Consultas</h4>
-			<table border=5 class=table>
-				<thead>
+					<tbody>
+				</c:forEach>
+		</table>
+	</div>
+	<br>
+	<br>
+	<br>
+	<div class="col-xs-8">
+		<h4>Consultas</h4>
+		<table border=5 class=table>
+			<thead>
+				<tr>
+					<th>Data</th>
+					<th>Hora</th>
+					<th>Estado</th>
+					<th>Cidade</th>
+					<th>Medico</th>
+					<th>Especialidade</th>
+				</tr>
+			</thead>
+			<tbody>
+				<c:forEach var="linha" items="${listaAgendaExame}">
 					<tr>
-						<th>Data</th>
-						<th>Hora</th>
-						<th>Estado</th>
-						<th>Cidade</th>
-						<th>Medico</th>
-						<th>Especialidade</th>
+						<td>${linha.data}</td>
+						<td>${linha.hora}</td>
+						<td>${linha.estado}</td>
+						<td>${linha.cidade}</td>
+						<td>${linha.medico}</td>
+						<td>${linha.especialidade}</td>
 					</tr>
-				</thead>
-				<tbody>
-					<c:forEach var="linha" items="${listaAgendaExame}">
-						<tr>
-							<td>${linha.data}</td>
-							<td>${linha.hora}</td>
-							<td>${linha.estado}</td>
-							<td>${linha.cidade}</td>
-							<td>${linha.medico}</td>
-							<td>${linha.especialidade}</td>
-						</tr>
-					</c:forEach>
-				</tbody>
-			</table>
-		</div>
-		<br />
-	</form>
+				</c:forEach>
+			</tbody>
+		</table>
+	</div>
+	<br />
+
 	<div class="navbar"></div>
 	<button type="button" onClick="window.print();">Imprimir</button>
 </body>
